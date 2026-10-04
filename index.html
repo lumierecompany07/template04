@@ -2112,6 +2112,497 @@
             -webkit-text-fill-color: #4A1F2B !important;
         }
 </style>
+
+<style id="lumiere-hide-visible-scrollbars">
+/* Hide visible scrollbars everywhere while preserving touch/mouse/keyboard scrolling */
+html, body, * {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+  background: transparent !important;
+}
+/* Prevent accidental horizontal page overflow without blocking vertical scrolling */
+html, body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+</style>
+
+    <style id="introEightSecondNamesCurvedFinal">
+        /* Keep the intro video sharp; reveal the wedding title at 8s without blurring the footage. */
+        #introScreen .intro-video,
+        #introScreen.intro-reveal .intro-video {
+            filter:brightness(.94) saturate(.98) !important;
+            transform:scale(1.015) !important;
+        }
+        #introScreen .intro-video-shade,
+        #introScreen.intro-reveal .intro-video-shade {
+            background:linear-gradient(180deg,rgba(5,3,6,.05),rgba(5,3,6,.025) 54%,rgba(5,3,6,.16)) !important;
+        }
+
+        /* Premium curved outer layer for the intro only. */
+        #introScreen .intro-curved-frame {
+            display:block !important;
+            position:absolute;
+            z-index:4;
+            inset:18px;
+            border:1.35px solid rgba(244,214,143,.78);
+            border-radius:42px;
+            box-shadow:inset 0 0 0 1px rgba(255,246,218,.08),0 0 28px rgba(218,175,83,.08);
+            opacity:.92;
+            pointer-events:none;
+        }
+        #introScreen .intro-curved-frame::before {
+            content:'';
+            position:absolute;
+            inset:8px;
+            border:1px solid rgba(244,214,143,.28);
+            border-radius:34px;
+        }
+        #introScreen .intro-curved-frame::after {
+            content:'';
+            position:absolute;
+            left:50%;
+            top:-1px;
+            width:92px;
+            height:18px;
+            transform:translateX(-50%);
+            border-top:1.4px solid rgba(255,229,163,.92);
+            border-radius:50% 50% 0 0;
+            filter:drop-shadow(0 0 9px rgba(231,193,103,.22));
+        }
+        #introScreen .intro-curved-frame span::before,
+        #introScreen .intro-curved-frame span::after {
+            content:'✦';
+            position:absolute;
+            top:50%;
+            transform:translateY(-50%);
+            color:rgba(246,216,144,.82);
+            font-size:10px;
+            text-shadow:0 0 12px rgba(239,207,132,.34);
+        }
+        #introScreen .intro-curved-frame span::before { left:-5px; }
+        #introScreen .intro-curved-frame span::after { right:-5px; }
+
+        /* 8-second wedding title reveal. */
+        #introEightSecondTitle {
+            position:relative;
+            z-index:5;
+            width:min(88vw,760px);
+            padding:32px 24px;
+            text-align:center;
+            color:#fff8ea;
+            opacity:0;
+            transform:translateY(24px) scale(.965);
+            filter:blur(5px);
+            pointer-events:none;
+        }
+        #introScreen.show-eight-second-title #introEightSecondTitle {
+            animation:introEightTitleIn 1.15s cubic-bezier(.16,1,.3,1) forwards;
+        }
+        #introWeddingKicker {
+            margin:0 0 10px;
+            font-family:'Cinzel',serif;
+            font-size:clamp(.68rem,2.4vw,.92rem);
+            font-weight:600;
+            letter-spacing:.42em;
+            text-transform:uppercase;
+            color:#f0d38a !important;
+            opacity:0;
+        }
+        #introEightSecondNames {
+            margin:0;
+            font-family:'Cinzel',serif;
+            font-size:clamp(2rem,8.8vw,4.8rem);
+            line-height:1.04;
+            font-weight:600;
+            letter-spacing:.025em;
+            color:#fff8ea !important;
+            text-shadow:0 4px 28px rgba(0,0,0,.48),0 0 22px rgba(224,188,102,.18);
+            opacity:0;
+        }
+        #introScreen.show-eight-second-title #introWeddingKicker {
+            animation:introEightKickerIn .9s .12s cubic-bezier(.16,1,.3,1) forwards;
+        }
+        #introScreen.show-eight-second-title #introEightSecondNames {
+            animation:introEightNamesIn 1.1s .28s cubic-bezier(.16,1,.3,1) forwards;
+        }
+        @keyframes introEightTitleIn {
+            from { opacity:0; transform:translateY(24px) scale(.965); filter:blur(5px); }
+            to { opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
+        }
+        @keyframes introEightKickerIn {
+            from { opacity:0; transform:translateY(12px); letter-spacing:.52em; }
+            to { opacity:1; transform:translateY(0); letter-spacing:.42em; }
+        }
+        @keyframes introEightNamesIn {
+            0% { opacity:0; transform:translateY(18px) scale(.94); filter:blur(5px); }
+            65% { opacity:1; transform:translateY(-2px) scale(1.018); filter:blur(0); }
+            100% { opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
+        }
+        @media (max-width:640px) {
+            #introScreen .intro-curved-frame { inset:0.5cm; border-radius:28px; }
+            #introScreen .intro-curved-frame::before { inset:6px; border-radius:21px; }
+            #introEightSecondTitle { width:calc(100% - 1.5cm); padding:24px 12px; }
+            #introWeddingKicker { letter-spacing:.30em; }
+            #introScreen.show-eight-second-title #introWeddingKicker { animation-name:introEightKickerInMobile; }
+        }
+        @keyframes introEightKickerInMobile {
+            from { opacity:0; transform:translateY(12px); letter-spacing:.38em; }
+            to { opacity:1; transform:translateY(0); letter-spacing:.30em; }
+        }
+        @media (prefers-reduced-motion:reduce) {
+            #introEightSecondTitle,#introWeddingKicker,#introEightSecondNames { filter:none !important; }
+        }
+    </style>
+
+    <style id="introThinFrameBlackOutsideFinal">
+        /* Thin luxury intro frame + pure black area outside the frame. */
+        #introScreen.video-intro-screen {
+            background:#000 !important;
+        }
+        #introScreen .intro-curved-frame {
+            border-width:.72px !important;
+            border-color:rgba(245,217,151,.74) !important;
+            box-shadow:
+                0 0 0 100vmax rgba(0,0,0,.96),
+                inset 0 0 0 .45px rgba(255,246,218,.055),
+                0 0 16px rgba(218,175,83,.055) !important;
+            clip-path:inset(-100vmax);
+        }
+        #introScreen .intro-curved-frame::before {
+            border-width:.45px !important;
+            border-color:rgba(245,217,151,.20) !important;
+        }
+        #introScreen .intro-curved-frame::after {
+            border-top-width:.7px !important;
+            filter:drop-shadow(0 0 5px rgba(231,193,103,.15)) !important;
+        }
+        #introScreen .intro-curved-frame span::before,
+        #introScreen .intro-curved-frame span::after {
+            opacity:.72;
+            font-size:8px !important;
+        }
+        @media (max-width:640px) {
+            #introScreen .intro-curved-frame {
+                border-width:.65px !important;
+            }
+            #introScreen .intro-curved-frame::before {
+                border-width:.4px !important;
+            }
+        }
+    </style>
+
+
+<style id="rsvpSimpleFinal">
+#rsvp.rsvp-simple-card{
+  width:min(100%,560px);margin-left:auto!important;margin-right:auto!important;
+  padding:18px 16px!important;border-radius:20px!important;
+  background:rgba(255,250,246,.76)!important;border:1px solid rgba(183,137,63,.28)!important;
+  box-shadow:0 8px 22px rgba(62,35,29,.08)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  color:#4f3037!important;
+}
+#rsvp .rsvp-simple-head{text-align:center;margin-bottom:12px}
+#rsvp .rsvp-simple-kicker{margin:0 0 2px!important;font-family:'Cinzel',serif;font-size:8px!important;line-height:1.2!important;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:#9a6a28!important;-webkit-text-fill-color:#9a6a28!important;text-shadow:none!important}
+#rsvp .rsvp-simple-head h2{margin:0!important;font-family:'Cinzel',serif;font-size:clamp(1.15rem,5vw,1.45rem)!important;line-height:1.15!important;font-weight:700;color:#67283a!important;-webkit-text-fill-color:#67283a!important;text-shadow:none!important}
+#rsvp .rsvp-simple-deadline{margin:5px auto 0!important;max-width:330px;font-size:9px!important;line-height:1.35!important;color:#765c61!important;-webkit-text-fill-color:#765c61!important;text-shadow:none!important}
+#rsvp .rsvp-simple-form{display:grid;gap:9px}
+#rsvp .rsvp-simple-input{width:100%;height:42px;padding:0 13px!important;border-radius:12px!important;border:1px solid rgba(183,137,63,.30)!important;background:rgba(255,255,255,.84)!important;color:#4f3037!important;-webkit-text-fill-color:#4f3037!important;font-size:12px!important;outline:none!important;box-shadow:none!important}
+#rsvp .rsvp-simple-input::placeholder{color:rgba(79,48,55,.48)!important;-webkit-text-fill-color:rgba(79,48,55,.48)!important}
+#rsvp .rsvp-simple-choice{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#rsvp .rsvp-simple-choice-btn{height:39px;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:11px!important;border:1px solid rgba(103,40,58,.24)!important;background:rgba(255,255,255,.52)!important;color:#67283a!important;-webkit-text-fill-color:#67283a!important;font-family:'Cinzel',serif;font-size:10px!important;font-weight:700!important;box-shadow:none!important;transform:none!important;cursor:pointer}
+#rsvp .rsvp-simple-choice-btn.is-primary{background:#6a2635!important;color:#fff5e9!important;-webkit-text-fill-color:#fff5e9!important;border-color:#6a2635!important}
+#rsvp .rsvp-simple-count{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 9px!important;border-radius:11px!important;border:1px solid rgba(183,137,63,.22)!important;background:rgba(255,255,255,.42)!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+#rsvp .rsvp-simple-count label{font-family:'Cinzel',serif;font-size:9px!important;font-weight:700;color:#765c61!important;-webkit-text-fill-color:#765c61!important}
+#rsvp .rsvp-simple-count input{width:58px;height:31px;padding:0 4px!important;text-align:center;border-radius:8px!important;border:1px solid rgba(183,137,63,.28)!important;background:#fff!important;color:#4f3037!important;-webkit-text-fill-color:#4f3037!important;font-size:11px!important;box-shadow:none!important;outline:none!important}
+#rsvp .rsvp-simple-submit{width:100%;height:41px;border:0!important;border-radius:11px!important;background:#6a2635!important;color:#fff5e9!important;-webkit-text-fill-color:#fff5e9!important;font-family:'Cinzel',serif;font-size:10px!important;font-weight:700!important;letter-spacing:.04em;box-shadow:none!important;cursor:pointer}
+#rsvp .rsvp-simple-expired{padding:14px 8px;text-align:center;color:#765c61!important}
+#rsvp .rsvp-simple-expired i,#rsvp .rsvp-simple-expired strong,#rsvp .rsvp-simple-expired span{display:block;margin:3px auto;color:#765c61!important;-webkit-text-fill-color:#765c61!important}
+#rsvp .rsvp-simple-expired strong{font-family:'Cinzel',serif;font-size:11px}
+#rsvp .rsvp-simple-expired span{font-size:9px}
+#rsvp .rsvp-simple-message{margin-top:9px!important;padding:8px 9px;border-radius:9px;background:rgba(255,255,255,.5);font-size:9px!important;line-height:1.4!important;color:#765c61!important;-webkit-text-fill-color:#765c61!important;text-align:center;text-shadow:none!important}
+@media(max-width:640px){#rsvp.rsvp-simple-card{padding:15px 13px!important;border-radius:18px!important}#rsvp .rsvp-simple-form{gap:8px}#rsvp .rsvp-simple-input{height:40px}#rsvp .rsvp-simple-choice-btn{height:37px}#rsvp .rsvp-simple-submit{height:39px}}
+</style>
+<style id="lumiereSeatingSystemStyles">
+#guestSeatingStatusSection .seat-loading-shell{position:relative;overflow:hidden;max-width:560px;margin:0 auto;padding:24px 18px 20px;border-radius:28px;border:1px solid rgba(214,177,90,.58);background:radial-gradient(circle at 50% -15%,rgba(234,203,127,.18),transparent 34%),linear-gradient(145deg,#fffaf1 0%,#f0dfc5 100%);box-shadow:0 28px 60px rgba(74,24,18,.12),inset 0 1px 0 rgba(255,255,255,.82)} #guestSeatingStatusSection .seat-loading-shell::before{content:"";position:absolute;inset:9px;border:1px solid rgba(166,113,31,.16);border-radius:20px;pointer-events:none} #guestSeatingStatusSection .seat-loading-shell>*{position:relative;z-index:1} .seat-loading-kicker{margin:0 0 4px;color:#9A6B18 !important;font-family:'Cinzel',serif;font-size:8px;font-weight:700;letter-spacing:.22em;text-transform:uppercase} .seat-loading-heading{margin:0 0 16px !important;color:#57151C !important;font-family:'Cinzel',serif !important;font-size:clamp(1.15rem,5vw,1.55rem) !important;font-weight:700 !important} .seat-loading-state,.seat-ready-state{width:min(100%,450px);margin:0 auto;padding:18px 14px 16px;border-radius:22px;border:1px solid rgba(218,183,101,.46);background:radial-gradient(circle at 50% -12%,rgba(244,215,148,.14),transparent 38%),linear-gradient(145deg,#73172B 0%,#53101F 56%,#300812 100%);box-shadow:0 18px 38px rgba(54,9,19,.13)} .seat-loader-emblem,.seat-ready-emblem{position:relative;width:48px;height:48px;margin:0 auto 10px;display:grid;place-items:center;border-radius:50%;color:#F0D17F;border:1px solid rgba(240,209,127,.36);background:rgba(255,255,255,.04)} .seat-loader-emblem span{position:absolute;inset:-4px;border-radius:50%;border:1px solid transparent;border-top-color:rgba(240,209,127,.84);animation:lumiereSeatSpin 2.2s linear infinite} @keyframes lumiereSeatSpin{to{transform:rotate(360deg)}} .seat-loading-state strong,.seat-ready-state strong{display:block;color:#FFF8E9 !important;font-family:'Cinzel',serif;font-size:12px;line-height:1.35} .seat-loading-state p,.seat-ready-state p{max-width:350px;margin:6px auto 0;color:rgba(255,248,233,.82) !important;font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;line-height:1.4;text-shadow:none !important} .seat-loading-state small{display:block;margin-top:11px;color:rgba(243,216,148,.78) !important;font-family:'Cinzel',serif;font-size:8px;font-weight:600;line-height:1.4} .seat-loading-dots{display:flex;justify-content:center;gap:5px;margin-top:10px} .seat-loading-dots span{width:5px;height:5px;border-radius:50%;background:#EACB79;animation:lumiereSeatDot 1.3s ease-in-out infinite} .seat-loading-dots span:nth-child(2){animation-delay:.17s} .seat-loading-dots span:nth-child(3){animation-delay:.34s} @keyframes lumiereSeatDot{0%,70%,100%{opacity:.25;transform:translateY(0)} 35%{opacity:1;transform:translateY(-4px)}} .seat-ready-state button{margin-top:13px;min-height:40px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,231,168,.66);background:linear-gradient(135deg,#E1BF67,#AA7924);color:#28120E;font-family:'Cinzel',serif;font-size:8px;font-weight:700;letter-spacing:.08em;cursor:pointer} .seat-admin-status,.seat-assignment-check,.seat-auto-reveal-hint{display:flex;align-items:center;gap:10px;padding:11px;border-radius:14px;border:1px solid rgba(146,98,27,.18)} .seat-admin-status-icon{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.34)} .seat-admin-eyebrow,.seat-admin-status strong,.seat-admin-status small,.seat-assignment-check strong,.seat-assignment-check span,.seat-auto-reveal-hint strong,.seat-auto-reveal-hint span{display:block} .seat-admin-eyebrow{font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:.15em;opacity:.7} .seat-admin-status strong,.seat-assignment-check strong,.seat-auto-reveal-hint strong{margin-top:2px;font-family:'Cinzel',serif;font-size:9px;font-weight:700;line-height:1.3} .seat-admin-status small,.seat-assignment-check span,.seat-auto-reveal-hint span{margin-top:2px;font-size:9px;line-height:1.35} .seat-admin-status.pending,.seat-assignment-check.waiting,.seat-auto-reveal-hint{color:#6D512B;background:rgba(168,116,22,.055)} .seat-admin-status.accepted,.seat-assignment-check.ready{color:#256044;border-color:rgba(28,124,81,.20);background:rgba(28,124,81,.07)} .seat-admin-status.declined,.seat-assignment-check.warning{color:#7A2937;border-color:rgba(151,44,61,.18);background:rgba(151,44,61,.07)} .seat-assignment-check>i,.seat-auto-reveal-hint>i{flex:0 0 25px;text-align:center} .seat-preview-btn{width:100%;min-height:39px;border-radius:13px;border:1px solid rgba(220,186,109,.48);background:linear-gradient(135deg,#65142A,#370914);color:#F3D98F;font-family:'Cinzel',serif;font-size:8px;font-weight:700;letter-spacing:.06em;cursor:pointer} body.seating-reveal-open{overflow:hidden !important} .seating-reveal-modal{position:fixed;inset:0;z-index:10090;place-items:center;padding:16px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .32s ease,visibility .32s ease} .seating-reveal-modal.open{opacity:1;visibility:visible;pointer-events:auto} .seating-reveal-backdrop{position:absolute;inset:0;width:100%;height:100%;border:0;background:rgba(20,7,11,.80);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)} .seating-reveal-dialog{position:relative;z-index:1;width:min(100%,500px);max-height:calc(100dvh - 28px);overflow-y:auto;padding:24px 17px 18px;border-radius:31px;text-align:center;background:radial-gradient(circle at 50% -10%,rgba(222,186,105,.17),transparent 30%),linear-gradient(145deg,#FFFDF8 0%,#F0DFC8 100%);border:1px solid rgba(210,169,84,.54);box-shadow:0 32px 90px rgba(0,0,0,.31),inset 0 0 0 1px rgba(255,255,255,.76);transform:translateY(24px) scale(.965);transition:transform .55s cubic-bezier(.16,1,.3,1)} .seating-reveal-modal.open .seating-reveal-dialog{transform:translateY(0) scale(1)} .seating-reveal-close{position:absolute;top:10px;right:10px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(176,130,42,.24);color:#5C172A;background:rgba(255,252,247,.82);cursor:pointer} .seating-reveal-gem{width:38px;height:38px;margin:0 auto 8px;display:grid;place-items:center;border-radius:50%;color:#B4852D;border:1px solid rgba(180,133,45,.28)} .seating-reveal-overline{margin:0 0 5px;color:#95673A !important;font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:.23em} .seating-reveal-dialog h2{margin:0;color:#4E1023 !important;font-family:'Cinzel',serif !important;font-size:18px !important;font-weight:700 !important} .popup-seating-guest{margin:5px 0 15px;color:#6B1930 !important;font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;font-weight:600} .popup-seating-ticket{padding:16px 14px 15px;border-radius:24px;background:radial-gradient(circle at 50% -15%,rgba(246,217,146,.13),transparent 38%),linear-gradient(145deg,#711832 0%,#4B0E21 55%,#23070F 100%);border:1px solid rgba(232,199,121,.47);box-shadow:0 16px 38px rgba(36,6,15,.16)} .popup-seating-grid{display:grid;grid-template-columns:1fr 1px 1fr;align-items:center;gap:10px} .popup-seating-grid>div:not(.popup-seating-divider)>span,.popup-seat-list-wrap>span{display:block;color:rgba(255,248,235,.64) !important;font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:.19em} .popup-seating-grid strong{display:block;margin-top:5px;color:#FFF8EC !important;font-family:'Cinzel',serif;font-size:20px;font-weight:700} .popup-seating-grid strong b{font-weight:700} .popup-seating-grid strong em{color:#F0D185 !important;font-size:10px;font-style:normal} .popup-seating-divider{width:1px;height:48px;background:linear-gradient(180deg,transparent,rgba(241,211,139,.52),transparent)} .popup-seat-list-wrap{margin-top:13px;padding-top:12px;border-top:1px dashed rgba(241,211,139,.24)} .popup-seat-list{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:8px} .popup-seat-list span{min-width:34px;padding:6px 9px;border-radius:999px;color:#FFF8EC !important;font-family:'Cinzel',serif;font-size:10px;font-weight:700;background:rgba(255,255,255,.05);border:1px solid rgba(241,211,139,.30)} .popup-seat-empty{opacity:.66} .popup-seating-note{margin:12px auto 0;max-width:370px;color:rgba(255,248,235,.78) !important;font-family:'Cormorant Garamond',serif;font-size:12px;font-weight:600;line-height:1.4;text-shadow:none !important} .popup-event-summary{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px} .popup-event-summary>div{min-width:0;padding:10px 8px;border-radius:14px;background:rgba(255,251,246,.75);border:1px solid rgba(180,133,45,.20)} .popup-event-summary i{color:#B18430;font-size:10px} .popup-event-summary span{display:block;margin-top:4px;color:#3A1B22 !important;font-family:'Cinzel',serif;font-size:8px;font-weight:700;line-height:1.3} .popup-seating-done{margin-top:11px;min-height:41px;width:100%;border-radius:999px;border:1px solid rgba(225,190,111,.58);background:linear-gradient(135deg,#68142E,#350A18);color:#F7DFA0;font-family:'Cinzel',serif;font-size:8px;font-weight:700;letter-spacing:.08em;cursor:pointer} @media(max-width:640px){#guestSeatingStatusSection .seat-loading-shell{padding:20px 13px 17px;border-radius:23px} .seat-loading-state,.seat-ready-state{border-radius:19px} .seating-reveal-modal{padding:10px} .seating-reveal-dialog{border-radius:25px;padding:22px 12px 15px} .popup-seating-ticket{border-radius:20px;padding-left:10px;padding-right:10px}} @media(prefers-reduced-motion:reduce){.seat-loader-emblem span,.seat-loading-dots span{animation:none !important} .seating-reveal-modal,.seating-reveal-dialog{transition:none !important}}
+
+/* Imported seating experience from the supplied reference, adapted to this template. */
+#guestSeatingStatusSection{position:relative;z-index:10;margin-top:8px;margin-bottom:8px}
+#seatingManagerCustomizer .seat-admin-status,#seatingManagerCustomizer .seat-assignment-check,#seatingManagerCustomizer .seat-auto-reveal-hint{font-size:9px}
+#seatingManagerCustomizer .seat-preview-btn{display:flex;align-items:center;justify-content:center;gap:6px}
+#seatingRevealModal{z-index:10090 !important}
+#seatingRevealModal *{box-sizing:border-box}
+@media(max-width:640px){#guestSeatingStatusSection{padding-left:4px !important;padding-right:4px !important}}
+
+</style>
+
+<style id="lumiere-seating-card-light-palette-final">
+/* Seating card: light premium palette throughout */
+#guestSeatingStatusSection .seat-loading-shell{
+  background:linear-gradient(145deg,rgba(255,253,248,.94),rgba(250,241,222,.90)) !important;
+  border-color:rgba(205,164,83,.52) !important;
+  box-shadow:0 18px 42px rgba(79,52,24,.10),inset 0 1px 0 rgba(255,255,255,.96) !important;
+}
+#guestSeatingStatusSection .seat-loading-shell::before{
+  border-color:rgba(202,159,74,.24) !important;
+}
+#guestSeatingStatusSection .seat-loading-kicker{
+  color:#B18434 !important;
+  -webkit-text-fill-color:#B18434 !important;
+}
+#guestSeatingStatusSection .seat-loading-heading{
+  color:#6A4A2A !important;
+  -webkit-text-fill-color:#6A4A2A !important;
+  text-shadow:none !important;
+}
+#guestSeatingStatusSection .seat-loading-state,
+#guestSeatingStatusSection .seat-ready-state{
+  background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(250,239,214,.88)) !important;
+  border-color:rgba(210,171,91,.48) !important;
+  box-shadow:0 12px 28px rgba(90,61,28,.08),inset 0 1px 0 rgba(255,255,255,.96) !important;
+}
+#guestSeatingStatusSection .seat-loader-emblem,
+#guestSeatingStatusSection .seat-ready-emblem{
+  color:#B7862E !important;
+  background:rgba(255,255,255,.72) !important;
+  border-color:rgba(190,145,59,.34) !important;
+  box-shadow:0 5px 18px rgba(146,100,29,.08) !important;
+}
+#guestSeatingStatusSection .seat-loader-emblem span{
+  border-top-color:#C99B42 !important;
+}
+#guestSeatingStatusSection .seat-loading-state strong,
+#guestSeatingStatusSection .seat-ready-state strong{
+  color:#76522B !important;
+  -webkit-text-fill-color:#76522B !important;
+  text-shadow:none !important;
+}
+#guestSeatingStatusSection .seat-loading-state p,
+#guestSeatingStatusSection .seat-ready-state p{
+  color:#8A6840 !important;
+  -webkit-text-fill-color:#8A6840 !important;
+  text-shadow:none !important;
+}
+#guestSeatingStatusSection .seat-loading-state small,
+#guestSeatingStatusSection #seatRevealDateText{
+  color:#A77A32 !important;
+  -webkit-text-fill-color:#A77A32 !important;
+  text-shadow:none !important;
+}
+#guestSeatingStatusSection .seat-loading-status{
+  color:#8B6A3E !important;
+  -webkit-text-fill-color:#8B6A3E !important;
+}
+#guestSeatingStatusSection .seat-loading-status span{
+  color:#8B6A3E !important;
+  -webkit-text-fill-color:#8B6A3E !important;
+  background:rgba(255,255,255,.52) !important;
+  border-color:rgba(202,160,78,.20) !important;
+}
+#guestSeatingStatusSection .seat-loading-status i{
+  color:#B88A37 !important;
+}
+#guestSeatingStatusSection .seat-loading-dots span{
+  background:#C99A42 !important;
+}
+#guestSeatingStatusSection .seat-loading-progress{
+  background:rgba(196,151,65,.14) !important;
+}
+#guestSeatingStatusSection .seat-loading-progress span{
+  background:linear-gradient(90deg,#E5C77E,#B98934,#E5C77E) !important;
+}
+#guestSeatingStatusSection .seat-ready-state button{
+  background:linear-gradient(135deg,#F8E8BC,#D9B66A) !important;
+  color:#6A4826 !important;
+  -webkit-text-fill-color:#6A4826 !important;
+  border-color:rgba(178,132,47,.42) !important;
+  box-shadow:0 8px 20px rgba(121,83,25,.10) !important;
+}
+#guestSeatingStatusSection .seat-ready-state button i{
+  color:#8A642E !important;
+}
+</style>
+
+<style id="lumiere-seating-reference-calendar-w15-final">
+/* ===== Seating card rebuilt to match the supplied reference ===== */
+#guestSeatingStatusSection{padding-top:18px !important;padding-bottom:18px !important;}
+#guestSeatingStatusSection .seat-loading-shell{
+  width:min(100%,520px) !important;
+  padding:24px 16px 18px !important;
+  border-radius:30px !important;
+  background:linear-gradient(180deg,rgba(255,250,241,.98),rgba(249,238,218,.96)) !important;
+  border:1px solid rgba(205,164,83,.55) !important;
+  box-shadow:inset 0 0 0 8px rgba(255,252,246,.48),inset 0 0 0 9px rgba(206,165,84,.22),0 18px 40px rgba(70,37,20,.10) !important;
+  animation:seatCardIn .9s cubic-bezier(.16,1,.3,1) both !important;
+}
+#guestSeatingStatusSection .seat-loading-shell::before{
+  inset:11px !important;
+  border-radius:23px !important;
+  border:1px solid rgba(190,144,58,.20) !important;
+}
+#guestSeatingStatusSection .seat-loading-kicker{
+  margin-bottom:3px !important;
+  color:#A06E21 !important;
+  -webkit-text-fill-color:#A06E21 !important;
+  font-size:8px !important;
+  letter-spacing:.28em !important;
+}
+#guestSeatingStatusSection .seat-loading-heading{
+  margin:0 0 18px !important;
+  color:#5B1720 !important;
+  -webkit-text-fill-color:#5B1720 !important;
+  font-size:clamp(1.45rem,6.4vw,2rem) !important;
+  letter-spacing:.025em !important;
+}
+#guestSeatingStatusSection .seat-loading-heading::after{
+  content:"";display:block;width:68px;height:1px;margin:9px auto 0;background:linear-gradient(90deg,transparent,#D2AD5A,transparent);
+}
+#guestSeatingStatusSection .seat-loading-state,
+#guestSeatingStatusSection .seat-ready-state{
+  width:min(100%,455px) !important;
+  min-height:330px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:22px 16px 20px !important;
+  border-radius:24px !important;
+  background:radial-gradient(circle at 50% -8%,rgba(236,189,91,.10),transparent 32%),linear-gradient(160deg,#8B2032 0%,#681426 48%,#4E0D1C 100%) !important;
+  border:1px solid rgba(232,194,105,.42) !important;
+  box-shadow:inset 0 1px 0 rgba(255,229,171,.08),0 14px 30px rgba(76,12,25,.16) !important;
+  color:#FFF5E8 !important;
+  animation:seatInnerIn .95s .12s cubic-bezier(.16,1,.3,1) both !important;
+}
+#guestSeatingStatusSection .seat-ready-state.hidden{display:none !important;}
+#guestSeatingStatusSection .seat-loader-emblem,
+#guestSeatingStatusSection .seat-ready-emblem{
+  width:58px !important;height:58px !important;margin:0 auto 16px !important;
+  color:#F3D16F !important;background:rgba(255,255,255,.02) !important;
+  border:1px solid rgba(240,202,106,.55) !important;
+  box-shadow:0 0 0 7px rgba(239,196,88,.05),0 0 22px rgba(239,196,88,.08) !important;
+  animation:seatEmblemFloat 3.2s ease-in-out infinite !important;
+}
+#guestSeatingStatusSection .seat-loader-emblem i,
+#guestSeatingStatusSection .seat-ready-emblem i{font-size:17px !important;color:#F3D16F !important;}
+#guestSeatingStatusSection .seat-loader-emblem span{inset:-7px !important;border-width:1px !important;border-top-color:#DAB150 !important;border-right-color:rgba(218,177,80,.34) !important;animation:lumiereSeatSpin 5.6s linear infinite !important;}
+#guestSeatingStatusSection .seat-loader-ring-two{display:block !important;position:absolute !important;inset:-12px !important;border-radius:50% !important;border:1px solid rgba(218,177,80,.16) !important;animation:seatRingPulse 2.7s ease-in-out infinite !important;}
+#guestSeatingStatusSection .seat-loading-state strong,
+#guestSeatingStatusSection .seat-ready-state strong{
+  max-width:320px !important;color:#FFF9ED !important;-webkit-text-fill-color:#FFF9ED !important;
+  font-family:'Cinzel',serif !important;font-size:13px !important;line-height:1.35 !important;text-transform:uppercase !important;
+  text-shadow:0 1px 0 rgba(0,0,0,.18) !important;
+}
+#guestSeatingStatusSection .seat-loading-state p,
+#guestSeatingStatusSection .seat-ready-state p{
+  max-width:330px !important;margin:9px auto 0 !important;color:#F6E8DD !important;-webkit-text-fill-color:#F6E8DD !important;
+  font-size:15px !important;line-height:1.4 !important;font-weight:600 !important;
+}
+#guestSeatingStatusSection .seat-loading-progress{
+  width:min(82%,320px) !important;height:4px !important;margin:18px auto 14px !important;border-radius:99px !important;overflow:hidden !important;
+  background:rgba(255,239,203,.15) !important;
+}
+#guestSeatingStatusSection .seat-loading-progress span{
+  display:block !important;width:100% !important;height:100% !important;border-radius:inherit !important;
+  background:linear-gradient(90deg,#7B2635 0%,#C28A45 48%,#FFE99A 100%) !important;
+  transform-origin:left center !important;animation:seatProgressBreath 3.4s ease-in-out infinite !important;
+}
+#guestSeatingStatusSection .seat-loading-status{
+  width:100% !important;display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:7px !important;
+  margin:0 auto 10px !important;color:#F6E7D8 !important;
+}
+#guestSeatingStatusSection .seat-loading-status span{
+  min-height:54px !important;padding:8px 5px !important;display:flex !important;flex-direction:column !important;align-items:center !important;justify-content:center !important;gap:4px !important;
+  border-radius:12px !important;border:1px solid rgba(242,203,110,.18) !important;background:rgba(255,255,255,.018) !important;
+  color:#F5E8DB !important;-webkit-text-fill-color:#F5E8DB !important;font-family:'Cinzel',serif !important;font-size:6.5px !important;font-weight:700 !important;line-height:1.25 !important;text-transform:uppercase !important;
+  animation:seatStatusTile 4s ease-in-out infinite !important;
+}
+#guestSeatingStatusSection .seat-loading-status span:nth-child(2){animation-delay:.22s !important;}
+#guestSeatingStatusSection .seat-loading-status span:nth-child(3){animation-delay:.44s !important;}
+#guestSeatingStatusSection .seat-loading-status i{font-size:10px !important;color:#F1CD68 !important;}
+#guestSeatingStatusSection .seat-loading-dots{margin-top:1px !important;gap:5px !important;}
+#guestSeatingStatusSection .seat-loading-dots span{width:5px !important;height:5px !important;background:#A36635 !important;}
+#guestSeatingStatusSection .seat-loading-state small,
+#guestSeatingStatusSection #seatRevealDateText{
+  display:block !important;max-width:365px !important;margin:12px auto 0 !important;color:#DDBB69 !important;-webkit-text-fill-color:#DDBB69 !important;
+  font-family:'Cinzel',serif !important;font-size:7.5px !important;font-weight:700 !important;line-height:1.45 !important;text-transform:uppercase !important;
+}
+#guestSeatingStatusSection .seat-ready-state button{
+  margin-top:16px !important;min-height:42px !important;padding:0 20px !important;border-radius:999px !important;
+  border:1px solid rgba(245,214,137,.48) !important;background:linear-gradient(135deg,#EBCB78,#B77D2E) !important;
+  color:#4A111A !important;-webkit-text-fill-color:#4A111A !important;box-shadow:0 8px 20px rgba(25,3,8,.18) !important;
+}
+@keyframes seatCardIn{from{opacity:0;transform:translateY(24px) scale(.975)}to{opacity:1;transform:none}}
+@keyframes seatInnerIn{from{opacity:0;transform:translateY(15px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes seatEmblemFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.035)}}
+@keyframes seatRingPulse{0%,100%{opacity:.3;transform:scale(.94)}50%{opacity:.75;transform:scale(1.06)}}
+@keyframes seatProgressBreath{0%,100%{transform:scaleX(.72);opacity:.65}50%{transform:scaleX(1);opacity:1}}
+@keyframes seatStatusTile{0%,100%{transform:translateY(0);border-color:rgba(242,203,110,.16)}50%{transform:translateY(-2px);border-color:rgba(242,203,110,.30)}}
+
+/* ===== Dynamic wedding-day calendar above Order of the Day ===== */
+#weddingDayCalendar{width:min(100%,430px);margin:0 auto 18px;padding:14px 14px 12px;border-radius:22px;border:1px solid rgba(218,182,106,.32);background:linear-gradient(180deg,rgba(255,250,240,.12),rgba(255,244,220,.055));box-shadow:inset 0 1px 0 rgba(255,255,255,.10);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);}
+#weddingDayCalendar .wdc-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px;padding:0 2px;}
+#weddingDayCalendar .wdc-label{font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#E4C576;}
+#weddingDayCalendar .wdc-month{font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:.08em;color:#FFF5E5;}
+#weddingDayCalendar .wdc-weekdays,#weddingDayCalendar .wdc-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+#weddingDayCalendar .wdc-weekdays span{padding:2px 0;color:rgba(247,223,168,.62);font-family:'Cinzel',serif;font-size:6px;font-weight:700;text-transform:uppercase;}
+#weddingDayCalendar .wdc-day{position:relative;aspect-ratio:1/1;display:grid;place-items:center;border-radius:50%;font-family:'Cinzel',serif;font-size:8px;font-weight:600;color:rgba(255,246,231,.74);}
+#weddingDayCalendar .wdc-day.empty{opacity:0;}
+#weddingDayCalendar .wdc-day.wedding{color:#4D0D19;background:linear-gradient(145deg,#F7DB8B,#C99432);box-shadow:0 0 0 3px rgba(241,207,120,.12),0 7px 16px rgba(22,3,7,.18);font-weight:800;animation:weddingDayPulse 2.5s ease-in-out infinite;}
+#weddingDayCalendar .wdc-day.wedding::after{content:"♥";position:absolute;bottom:-8px;font-size:7px;color:#E9C568;text-shadow:0 1px 2px rgba(0,0,0,.25);}
+#weddingDayCalendar .wdc-date-line{margin-top:11px;color:#E5C678;font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:700;font-style:italic;}
+@keyframes weddingDayPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 3px rgba(241,207,120,.10),0 7px 16px rgba(22,3,7,.18)}50%{transform:scale(1.09);box-shadow:0 0 0 6px rgba(241,207,120,.08),0 8px 20px rgba(22,3,7,.22)}}
+
+/* ===== Slightly larger w15 overlay to push its artwork farther to screen edges ===== */
+#mainDisplayOverlayW15 img{width:112vw !important;height:124dvh !important;top:47.8% !important;}
+@media(max-width:640px){#mainDisplayOverlayW15 img{width:114vw !important;height:128dvh !important;top:47.5% !important;}}
+@media(max-width:390px){#mainDisplayOverlayW15 img{width:116vw !important;height:130dvh !important;top:47.2% !important;}}
+
+@media(max-width:640px){
+  #guestSeatingStatusSection .seat-loading-shell{padding:21px 12px 15px !important;border-radius:26px !important;}
+  #guestSeatingStatusSection .seat-loading-state,#guestSeatingStatusSection .seat-ready-state{min-height:315px !important;padding:20px 12px 18px !important;border-radius:21px !important;}
+  #guestSeatingStatusSection .seat-loading-state p,#guestSeatingStatusSection .seat-ready-state p{font-size:14px !important;}
+  #weddingDayCalendar{padding:12px 11px 11px;border-radius:18px;margin-bottom:16px;}
+  #weddingDayCalendar .wdc-day{font-size:7.5px;}
+}
+@media(prefers-reduced-motion:reduce){#guestSeatingStatusSection .seat-loading-shell,#guestSeatingStatusSection .seat-loading-state,#guestSeatingStatusSection .seat-ready-state,#guestSeatingStatusSection .seat-loader-emblem,#guestSeatingStatusSection .seat-loader-ring-two,#guestSeatingStatusSection .seat-loading-progress span,#guestSeatingStatusSection .seat-loading-status span,#weddingDayCalendar .wdc-day.wedding{animation:none !important;}}
+</style>
+
+
+<style id="lumiere-w15-bigger-center-space-final">
+/* Larger W15 edge artwork: pushes ornaments farther outside the content area,
+   leaving a cleaner/open center while keeping the overlay fixed to the viewport. */
+#mainDisplayOverlayW15 img{
+  width:118vw !important;
+  height:136vh !important;
+  height:136dvh !important;
+  left:50% !important;
+  top:47.2% !important;
+  transform:translate(-50%,-50%) !important;
+  object-fit:fill !important;
+}
+@media(max-width:640px){
+  #mainDisplayOverlayW15 img{
+    width:122vw !important;
+    height:142vh !important;
+    height:142dvh !important;
+    top:46.9% !important;
+  }
+}
+@media(max-width:390px){
+  #mainDisplayOverlayW15 img{
+    width:124vw !important;
+    height:146vh !important;
+    height:146dvh !important;
+    top:46.7% !important;
+  }
+}
+</style>
 </head>
 <body class="bg-[#FFF9F4] text-[#5A3740] antialiased selection:bg-kandyanCrimson selection:text-white">
 
@@ -2121,30 +2612,24 @@
     <!-- CINEMATIC VIDEO INTRO -->
     <div id="introScreen" class="video-intro-screen">
         <video id="introVideo" class="intro-video" autoplay muted playsinline preload="auto">
-            <source src="https://raw.githubusercontent.com/lumierecompany07/introvideos/main/k.mp4" type="video/mp4">
+            <source src="https://raw.githubusercontent.com/lumierecompany07/introvideos2/main/15.mp4" type="video/mp4">
         </video>
         <div class="intro-video-shade" aria-hidden="true"></div>
         <div class="intro-curved-frame" aria-hidden="true"><span></span></div>
-
-        <div id="introRevealContent" class="intro-reveal-content" aria-live="polite">
-            <p class="intro-kicker">You're Invited</p>
-            <p class="intro-subline">to celebrate the wedding of</p>
-            <h2 id="introNames" class="intro-couple-names">Charlotte <span>&amp;</span> Oliver</h2>
-            <div class="intro-divider"><i class="fa-solid fa-heart"></i></div>
-            <p class="intro-message">Together with love, joy &amp; cherished moments</p>
-            <div id="introGuestBox" class="intro-guest-box">
-                <p>Specially prepared for</p>
-                <p id="introGuestName">Dear Family &amp; Friends</p>
-            </div>
-            <button type="button" onclick="openInvitation()" class="intro-open-button">
-                <span>Open Invitation</span><i class="fa-solid fa-arrow-right"></i>
-            </button>
+        <div id="introEightSecondTitle" aria-live="polite">
+            <p id="introWeddingKicker">The Wedding Of</p>
+            <h1 id="introEightSecondNames">Charlotte &amp; Oliver</h1>
         </div>
     </div>
 
     <!-- FIXED LIGHT WESTERN WEDDING BACKGROUND -->
     <div id="pageBackground" class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-        <img src="https://raw.githubusercontent.com/lumierecompany07/BackgroundPhotos/main/l%5D.jpg" alt="Wedding Background" class="absolute inset-0 w-full h-full object-cover">
+        <img src="https://raw.githubusercontent.com/lumierecompany07/BackgroundPhotos/main/w14.png" alt="Wedding Background" class="absolute inset-0 w-full h-full object-cover">
+    </div>
+
+    <!-- W15 MAIN PAGE DISPLAY OVERLAY: above all main-page photos/cards/text -->
+    <div id="mainDisplayOverlayW15" aria-hidden="true">
+        <img src="https://raw.githubusercontent.com/lumierecompany07/BackgroundPhotos/main/w15.png" alt="">
     </div>
 
     <!-- FALLING FLOWERS & PETALS CONTAINER -->
@@ -2152,7 +2637,7 @@
 
     <!-- MINIMALIST FLOATING MUSIC PLAYER -->
     <div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40">
-        <audio id="bgMusic" loop>
+        <audio id="bgMusic" loop autoplay preload="auto">
             <source id="audioSource" src="https://raw.githubusercontent.com/lumierecompany07/Backgroundmusics/main/MitiS%20-%20By%20My%20Side%20(feat.%20Tedy).mp3" type="audio/mp3">
         </audio>
         
@@ -2244,6 +2729,24 @@
                 <input type="text" id="inpVenueName" value="Rosewood Manor, The Cotswolds" class="w-full p-2 border border-kandyanGold/30 bg-[#1A0103] rounded-xl text-[#FAF6EE]">
                 <input type="text" id="inpMapLink" value="https://maps.app.goo.gl" placeholder="Google Maps Link" class="w-full p-2 border border-kandyanGold/30 bg-[#1A0103] rounded-xl text-[#FAF6EE]">
                 <textarea id="inpVenueAddress" rows="2" placeholder="Venue Address" class="w-full p-2 border border-kandyanGold/30 bg-[#1A0103] rounded-xl text-[#FAF6EE]">Bibury, Gloucestershire, United Kingdom</textarea>
+            </div>
+
+            <div class="space-y-3 border-b border-kandyanGold/20 pb-4" id="seatingManagerCustomizer">
+                <h4 class="font-bold text-kandyanLightGold uppercase tracking-wider text-sm font-cinzel"><i class="fa-solid fa-chair mr-1"></i> Seating Manager</h4>
+                <div class="seat-admin-status pending" id="seatRsvpAdminCard">
+                    <div class="seat-admin-status-icon"><i class="fa-regular fa-hourglass-half" id="seatRsvpAdminIcon"></i></div>
+                    <div><span class="seat-admin-eyebrow">RSVP STATUS</span><strong id="seatRsvpAdminStatus">Awaiting RSVP</strong><small id="seatRsvpAdminMeta">Guest count will appear after acceptance.</small></div>
+                </div>
+                <input type="text" id="inpSeatingGuest" placeholder="Guest / Family Name" value="Honored Family & Friends" class="w-full p-2 border border-kandyanGold/30 bg-[#1A0103] rounded-xl text-[#FAF6EE]">
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="text" id="inpTableNumber" placeholder="Table e.g. 08" class="w-full p-2 border border-kandyanGold/30 bg-[#1A0103] rounded-xl text-[#FAF6EE]">
+                    <input type="number" id="inpReservedGuestCount" value="0" min="0" readonly aria-label="Confirmed RSVP guests" class="w-full p-2 border border-kandyanGold/30 bg-[#1A0103] rounded-xl text-[#FAF6EE] opacity-75">
+                </div>
+                <input type="text" id="inpSeatNumbers" placeholder="Seat numbers e.g. 21, 22, 23" class="w-full p-2 border border-kandyanGold/30 bg-[#1A0103] rounded-xl text-[#FAF6EE]">
+                <textarea id="inpSeatingNote" rows="2" maxlength="220" class="w-full p-2 border border-kandyanGold/30 bg-[#1A0103] rounded-xl text-[#FAF6EE]">Your table has been prepared with care. Please show your seating details when you arrive.</textarea>
+                <div class="seat-assignment-check waiting" id="seatAssignmentCheck"><i class="fa-solid fa-circle-info" id="seatAssignmentCheckIcon"></i><div><strong id="seatAssignmentCheckTitle">Waiting for confirmed guest count</strong><span id="seatAssignmentCheckText">Assign table and seats after the guest accepts the invitation.</span></div></div>
+                <div class="seat-auto-reveal-hint"><i class="fa-regular fa-calendar-check"></i><div><strong>Automatic seating reveal</strong><span id="seatRevealDateHint">Unlocks 5 days before the wedding.</span></div></div>
+                <button class="seat-preview-btn" onclick="openSeatingReveal(true)" type="button"><i class="fa-regular fa-eye"></i> Preview Seating Reveal</button>
             </div>
 
             <div class="space-y-3 border-b border-kandyanGold/20 pb-4">
@@ -2464,6 +2967,12 @@
         <!-- 3. ITINERARY SECTION -->
         <section class="p-5 sm:p-10">
             <div class="text-center mb-8 sm:mb-10">
+                <div id="weddingDayCalendar" data-aos="zoom-in" data-aos-duration="700" aria-label="Wedding day calendar">
+                    <div class="wdc-top"><span class="wdc-label">Wedding Day</span><span id="weddingCalendarMonth" class="wdc-month">Month Year</span></div>
+                    <div class="wdc-weekdays" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+                    <div id="weddingCalendarGrid" class="wdc-grid"></div>
+                    <div id="weddingCalendarDateLine" class="wdc-date-line"></div>
+                </div>
                 <p data-aos="fade-up" class="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-kandyanLightGold font-bold hover-text-glow font-cinzel">Order of the Day</p>
                 <h2 data-aos="fade-up" data-aos-delay="100" class="font-cinzel text-2xl sm:text-4xl md:text-5xl font-bold text-[#FAF6EE] mt-1">The Celebration</h2>
                 <p data-aos="fade-up" data-aos-delay="200" class="text-xs text-kandyanLightGold italic mt-2">Tap any part of the day to see more details</p>
@@ -2513,51 +3022,54 @@
             <p id="footerNames" data-aos="zoom-in" data-aos-delay="300" class="font-cinzel text-xl sm:text-3xl text-kandyanLightGold font-bold inline-block">Charlotte & Oliver</p>
         </section>
 
-        <!-- RSVP SECTION - SIMPLIFIED -->
-        <section id="rsvp" class="p-4 sm:p-6 rounded-[1.75rem] border border-kandyanGold/35 bg-[#2B0509]/65 backdrop-blur-sm shadow-[0_14px_36px_rgba(0,0,0,0.24)]">
-            <div class="text-center mb-4">
-                <h2 data-aos="fade-up" class="font-cinzel text-xl sm:text-2xl font-bold text-[#FAF6EE]">RSVP</h2>
-                <p id="rsvpDeadlineText" data-aos="fade-up" data-aos-delay="100" class="text-[10px] sm:text-[11px] text-kandyanLightGold mt-1 leading-relaxed">
-                    Kindly RSVP no later than 10 days before the wedding. You can update your response until the deadline.
-                </p>
+<section class="relative px-4 sm:px-6 py-7 sm:py-10" id="guestSeatingStatusSection"><div class="max-w-xl mx-auto text-center"><div class="seat-loading-shell mx-auto"><p class="seat-loading-kicker">Reserved Especially For You</p><h2 class="seat-loading-heading">Your Seating</h2><div class="seat-loading-state seat-premium-loading" id="seatLoadingState"><div aria-hidden="true" class="seat-loader-emblem seat-loader-premium"><i class="fa-solid fa-chair"></i><span></span><span class="seat-loader-ring-two"></span></div><strong id="seatLoadingTitle">Preparing Your Seating</strong><p id="seatLoadingText">We are arranging your reserved table and seat details.</p><div aria-hidden="true" class="seat-loading-progress"><span></span></div><div class="seat-loading-status"><span><i class="fa-solid fa-circle-check"></i> RSVP status</span><span><i class="fa-solid fa-spinner"></i> Seating allocation</span><span><i class="fa-regular fa-gem"></i> Final reveal</span></div><div aria-hidden="true" class="seat-loading-dots"><span></span><span></span><span></span></div><small id="seatRevealDateText">Seating details are being prepared • final reveal 5 days before the wedding.</small></div><div class="seat-ready-state hidden" id="seatReadyState"><div class="seat-ready-emblem"><i class="fa-solid fa-gem"></i></div><strong>Your seating is ready</strong><p>Your table and reserved seats are now available.</p><button onclick="openSeatingReveal(false)" type="button"><i class="fa-solid fa-chair"></i> View Your Seating </button></div></div></div></section>
+
+                <!-- RSVP SECTION - SIMPLIFIED -->
+        <section id="rsvp" class="rsvp-simple-card">
+            <div class="rsvp-simple-head">
+                <p class="rsvp-simple-kicker">Kindly Respond</p>
+                <h2>RSVP</h2>
+                <p id="rsvpDeadlineText" class="rsvp-simple-deadline">Please reply before the RSVP deadline.</p>
             </div>
 
-            <div id="rsvpFormContainer" data-aos="fade-up">
-                <form onsubmit="handleRSVP(event)" class="space-y-3">
-                    <input type="text" id="guestName" required placeholder="Invited guest name" aria-label="Invited Guest" class="w-full bg-[#1A0103]/85 border border-kandyanGold/30 focus:border-kandyanLightGold rounded-xl px-4 py-3 text-xs sm:text-sm outline-none transition text-[#FAF6EE]">
+            <div id="rsvpFormContainer">
+                <form onsubmit="handleRSVP(event)" class="rsvp-simple-form">
+                    <input type="text" id="guestName" required placeholder="Guest name" aria-label="Invited Guest" class="rsvp-simple-input">
 
-                    <div class="grid grid-cols-2 gap-2">
-                        <button type="button" onclick="setAttendance('Accept')" id="btnAccept" class="flex items-center justify-center gap-1.5 bg-kandyanCrimson text-kandyanLightGold font-bold py-3 px-3 rounded-xl transition text-[11px] sm:text-xs shadow-sm hover:scale-[1.02] font-cinzel border border-kandyanGold/30 cursor-pointer">
-                            <i class="fa-solid fa-check"></i> Accept
+                    <div class="rsvp-simple-choice">
+                        <button type="button" onclick="setAttendance('Accept')" id="btnAccept" class="rsvp-simple-choice-btn is-primary">
+                            <i class="fa-solid fa-check"></i><span>Accept</span>
                         </button>
-                        <button type="button" onclick="setAttendance('Decline')" id="btnDecline" class="flex items-center justify-center gap-1.5 bg-transparent text-[#FAF6EE] border border-kandyanGold/40 font-bold py-3 px-3 rounded-xl transition text-[11px] sm:text-xs hover:scale-[1.02] font-cinzel cursor-pointer">
-                            <i class="fa-solid fa-xmark"></i> Decline
+                        <button type="button" onclick="setAttendance('Decline')" id="btnDecline" class="rsvp-simple-choice-btn">
+                            <i class="fa-solid fa-xmark"></i><span>Decline</span>
                         </button>
                     </div>
 
-                    <div id="guestCountSection" class="flex items-center gap-3 bg-[#1A0103]/35 border border-kandyanGold/15 rounded-xl p-2.5" data-aos="fade-up" data-aos-delay="150">
-                        <label for="attendingCount" class="flex-1 text-[10px] sm:text-[11px] font-semibold text-kandyanLightGold font-cinzel">Attending Count</label>
-                        <input type="number" id="attendingCount" min="1" step="1" value="2" required inputmode="numeric" aria-label="Attending Count" class="w-20 bg-[#1A0103] border border-kandyanGold/30 focus:border-kandyanLightGold rounded-lg px-2 py-2 text-xs font-semibold text-[#FAF6EE] outline-none text-center">
+                    <div id="guestCountSection" class="rsvp-simple-count">
+                        <label for="attendingCount">Guests</label>
+                        <input type="number" id="attendingCount" min="1" step="1" value="2" required inputmode="numeric" aria-label="Attending Count">
                     </div>
 
-                    <button id="rsvpSubmitBtn" type="submit" class="w-full bg-kandyanCrimson hover:bg-kandyanDeepRed text-kandyanLightGold font-bold py-3 px-5 rounded-xl transition text-xs shadow-md flex items-center justify-center gap-2 font-cinzel border border-kandyanGold/35 cursor-pointer">
-                        <i class="fa-solid fa-check"></i> Save RSVP
+                    <button id="rsvpSubmitBtn" type="submit" class="rsvp-simple-submit">
+                        Save RSVP
                     </button>
                 </form>
             </div>
 
-            <div id="rsvpExpiredBox" class="hidden text-center py-5 px-3 rounded-xl space-y-1.5">
-                <div class="text-kandyanLightGold text-lg"><i class="fa-solid fa-lock"></i></div>
-                <h4 class="font-cinzel text-sm sm:text-base font-bold text-[#FAF6EE]">RSVP Closed</h4>
-                <p class="text-[10px] sm:text-[11px] text-kandyanLightGold">Responses close 10 days before the wedding.</p>
+            <div id="rsvpExpiredBox" class="hidden rsvp-simple-expired">
+                <i class="fa-solid fa-lock"></i>
+                <strong>RSVP Closed</strong>
+                <span>Responses are now closed.</span>
             </div>
 
-            <div id="rsvpMessage" class="hidden mt-3 text-center text-[10px] sm:text-xs font-semibold text-kandyanLightGold"></div>
+            <div id="rsvpMessage" class="hidden rsvp-simple-message"></div>
         </section>
 
     </main>
 
-    <!-- PHASE DETAILS ZOOM-IN MODAL POPUP -->
+<div aria-hidden="true" aria-labelledby="seatingRevealHeading" aria-modal="true" class="seating-reveal-modal" id="seatingRevealModal" role="dialog" style="display:none"><button aria-label="Close seating details" class="seating-reveal-backdrop" onclick="closeSeatingReveal()" type="button"></button><div class="seating-reveal-dialog"><button aria-label="Close seating details" class="seating-reveal-close" onclick="closeSeatingReveal()" type="button"><i class="fa-solid fa-xmark"></i></button><div class="seating-reveal-gem"><i class="fa-solid fa-gem"></i></div><p class="seating-reveal-overline">YOUR SEATING IS READY</p><h2 id="seatingRevealHeading">Reserved Especially For</h2><p class="popup-seating-guest" id="popupSeatingGuest">Honored Family &amp; Friends</p><div class="popup-seating-ticket"><div class="popup-seating-grid"><div><span>TABLE</span><strong id="popupTableNumber">—</strong></div><div class="popup-seating-divider"></div><div><span>RESERVED FOR</span><strong><b id="popupGuestCount">1</b><em id="popupGuestWord">GUEST</em></strong></div></div><div class="popup-seat-list-wrap"><span>YOUR RESERVED SEATS</span><div class="popup-seat-list" id="popupSeatNumbers"></div></div><p class="popup-seating-note" id="popupSeatingNote"> Your table has been prepared with care. </p></div><div class="popup-event-summary"><div><i class="fa-regular fa-calendar"></i><span id="popupWeddingDate">Wedding Date</span></div><div><i class="fa-solid fa-location-dot"></i><span id="popupVenueName">Venue</span></div></div><button class="popup-seating-done" onclick="closeSeatingReveal()" type="button"> See You At The Celebration </button></div></div>
+
+        <!-- PHASE DETAILS ZOOM-IN MODAL POPUP -->
     <div id="phaseModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4" onclick="closePhaseModal()">
         <div class="bg-[#2B0509] rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-kandyanGold/40 relative animate-fade-scale text-center space-y-4 text-[#FAF6EE]" onclick="event.stopPropagation()">
             <button onclick="closePhaseModal()" class="absolute top-4 right-4 text-kandyanLightGold hover:text-white text-2xl font-bold transition cursor-pointer">×</button>
@@ -2959,19 +3471,37 @@
             ['pointerdown','touchstart','keydown','click'].forEach(evt =>
                 window.addEventListener(evt, unlockIntroMusic, { passive: true })
             );
-
-            // After 5 seconds, blur the intro video and reveal the wedding copy.
-            const introScreenEl = document.getElementById('introScreen');
+            // At 8 seconds, reveal “The Wedding Of” + the current bride/groom names.
+            // Keep the video sharp; only the text itself animates in.
             const introVideoEl = document.getElementById('introVideo');
-            const revealIntroCopy = () => {
-                if (introScreenEl && !introScreenEl.classList.contains('fade-out')) {
-                    introScreenEl.classList.add('intro-reveal');
+            const introScreenEl = document.getElementById('introScreen');
+            let introEightSecondShown = false;
+            const revealEightSecondWeddingTitle = () => {
+                if (introEightSecondShown || !introScreenEl) return;
+                introEightSecondShown = true;
+                const brideInput = document.getElementById('inpBride');
+                const groomInput = document.getElementById('inpGroom');
+                const heroNames = document.getElementById('heroNames');
+                let bride = brideInput && brideInput.value ? brideInput.value.trim() : '';
+                let groom = groomInput && groomInput.value ? groomInput.value.trim() : '';
+                if ((!bride || !groom) && heroNames) {
+                    const parts = heroNames.textContent.split('&').map(v => v.trim()).filter(Boolean);
+                    if (!bride && parts[0]) bride = parts[0];
+                    if (!groom && parts[1]) groom = parts[1];
                 }
+                const namesEl = document.getElementById('introEightSecondNames');
+                if (namesEl) namesEl.textContent = `${bride || 'Charlotte'} & ${groom || 'Oliver'}`;
+                introScreenEl.classList.add('show-eight-second-title');
             };
-            window.setTimeout(revealIntroCopy, 5000);
             if (introVideoEl) {
                 introVideoEl.play().catch(() => {});
-                introVideoEl.addEventListener('ended', revealIntroCopy, { once: true });
+                introVideoEl.addEventListener('timeupdate', () => {
+                    if (introVideoEl.currentTime >= 8) revealEightSecondWeddingTitle();
+                }, { passive: true });
+                introVideoEl.addEventListener('seeked', () => {
+                    if (introVideoEl.currentTime >= 8) revealEightSecondWeddingTitle();
+                }, { passive: true });
+                introVideoEl.addEventListener('ended', () => openInvitation(), { once: true });
             }
             const urlParams = new URLSearchParams(window.location.search);
             const guest = urlParams.get('guest');
@@ -3282,6 +3812,10 @@
                 venueAddress: document.getElementById('inpVenueAddress').value,
                 whatsappCode: document.getElementById('inpCountryCode').value,
                 whatsappNumber: document.getElementById('inpWhatsApp').value,
+                seatingGuest: document.getElementById('inpSeatingGuest')?.value || '',
+                tableNumber: document.getElementById('inpTableNumber')?.value || '',
+                seatNumbers: document.getElementById('inpSeatNumbers')?.value || '',
+                seatingNote: document.getElementById('inpSeatingNote')?.value || '',
                 itinerary: itineraryList,
                 photoPools: JSON.parse(JSON.stringify(photoPools))
             };
@@ -3362,6 +3896,10 @@
                     if(data.venueAddress) document.getElementById('inpVenueAddress').value = data.venueAddress;
                     if(data.whatsappCode) document.getElementById('inpCountryCode').value = data.whatsappCode;
                     if(data.whatsappNumber) document.getElementById('inpWhatsApp').value = data.whatsappNumber;
+                    if(data.seatingGuest && document.getElementById('inpSeatingGuest')) document.getElementById('inpSeatingGuest').value = data.seatingGuest;
+                    if(data.tableNumber && document.getElementById('inpTableNumber')) document.getElementById('inpTableNumber').value = data.tableNumber;
+                    if(data.seatNumbers && document.getElementById('inpSeatNumbers')) document.getElementById('inpSeatNumbers').value = data.seatNumbers;
+                    if(data.seatingNote && document.getElementById('inpSeatingNote')) document.getElementById('inpSeatingNote').value = data.seatingNote;
 
                     if(data.itinerary) {
                         itineraryList = data.itinerary;
@@ -3401,7 +3939,7 @@
 
                         const fullFormattedDate = dateObj.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
                         document.getElementById('footerSubText').textContent = `${fullFormattedDate} • ${data.venueName || ''}`;
-                        startCountdown(data.date);
+                        startCountdown(data.date, data.time);
                         setupRSVPDeadline(data.date);
                     }
                     if(data.time) {
@@ -3423,6 +3961,7 @@
                 document.getElementById('displayMonth').textContent = dateObj.toLocaleDateString('en-US', { month: 'short' });
                 document.getElementById('displayDateNum').textContent = dateObj.getDate();
                 document.getElementById('displayYear').textContent = dateObj.getFullYear();
+                startCountdown(defaultDateStr, document.getElementById('inpTime')?.value || '2:30 PM');
                 setupRSVPDeadline(defaultDateStr);
             }
         }
@@ -3454,21 +3993,54 @@
                 restoreSavedRSVP();
             }
         }
-
         let countdownInterval = null;
-        function startCountdown(targetDataStr) {
-            if (countdownInterval) clearInterval(countdownInterval);
-            function calculateTime() {
-                const distance = new Date(targetDataStr).getTime() - new Date().getTime();
-                if(distance > 0) {
-                    document.getElementById('days').textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    document.getElementById('hours').textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    document.getElementById('minutes').textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    document.getElementById('seconds').textContent = Math.floor((distance % (1000 * 60)) / 1000);
+        window.lumiereWeddingTargetMs = NaN;
+
+        function getWeddingTargetMs(dateVal, timeVal) {
+            if (!dateVal) return NaN;
+            const parts = String(dateVal).split('-').map(Number);
+            if (parts.length !== 3 || parts.some(n => !Number.isFinite(n))) return NaN;
+
+            let hours = 0, minutes = 0;
+            const rawTime = String(timeVal || '').trim();
+            if (rawTime) {
+                const match = rawTime.match(/^(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?$/i);
+                if (match) {
+                    hours = Math.min(23, Math.max(0, parseInt(match[1],10) || 0));
+                    minutes = Math.min(59, Math.max(0, parseInt(match[2] || '0',10) || 0));
+                    const meridiem = (match[3] || '').toUpperCase();
+                    if (meridiem === 'PM' && hours < 12) hours += 12;
+                    if (meridiem === 'AM' && hours === 12) hours = 0;
                 }
             }
+            return new Date(parts[0], parts[1]-1, parts[2], hours, minutes, 0, 0).getTime();
+        }
+
+        function startCountdown(dateVal, timeVal) {
+            if (countdownInterval) clearInterval(countdownInterval);
+            const targetMs = getWeddingTargetMs(dateVal, timeVal);
+            window.lumiereWeddingTargetMs = targetMs;
+
+            const setUnit = (id, value) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = String(Math.max(0, value)).padStart(2, '0');
+            };
+
+            function calculateTime() {
+                const distance = targetMs - Date.now();
+                if (!Number.isFinite(targetMs) || distance <= 0) {
+                    setUnit('days',0); setUnit('hours',0); setUnit('minutes',0); setUnit('seconds',0);
+                    return;
+                }
+                setUnit('days', Math.floor(distance / 86400000));
+                setUnit('hours', Math.floor((distance % 86400000) / 3600000));
+                setUnit('minutes', Math.floor((distance % 3600000) / 60000));
+                setUnit('seconds', Math.floor((distance % 60000) / 1000));
+            }
+
             calculateTime();
             countdownInterval = setInterval(calculateTime, 1000);
+            if (window.renderSeatingSection) window.renderSeatingSection();
         }
 
         renderLoveStory();
@@ -3498,8 +4070,8 @@
             const btnDecline = document.getElementById('btnDecline');
             const countSection = document.getElementById('guestCountSection');
 
-            const classNamesAccept = "flex items-center justify-center gap-1.5 bg-kandyanCrimson text-kandyanLightGold font-bold py-3 px-3 rounded-xl transition text-[11px] sm:text-xs shadow-sm hover:scale-[1.02] font-cinzel border border-kandyanGold/30 cursor-pointer";
-            const classNamesDecline = "flex items-center justify-center gap-1.5 bg-transparent text-[#FAF6EE] border border-kandyanGold/40 font-bold py-3 px-3 rounded-xl transition text-[11px] sm:text-xs hover:scale-[1.02] font-cinzel cursor-pointer";
+            const classNamesAccept = "rsvp-simple-choice-btn is-primary";
+            const classNamesDecline = "rsvp-simple-choice-btn";
 
             if (status === 'Accept') {
                 btnAccept.className = classNamesAccept;
@@ -3542,7 +4114,7 @@
                 }
 
                 const submitBtn = document.getElementById('rsvpSubmitBtn');
-                if (submitBtn) submitBtn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Update RSVP';
+                if (submitBtn) submitBtn.textContent = 'Update RSVP';
 
                 const msgDiv = document.getElementById('rsvpMessage');
                 if (msgDiv) {
@@ -3567,6 +4139,7 @@
                 updatedAt: new Date().toISOString()
             };
             localStorage.setItem(getRSVPStorageKey(), JSON.stringify(responseData));
+            if (window.renderSeatingSection) window.renderSeatingSection();
 
             msgDiv.classList.remove('hidden');
             if (attendanceStatus === 'Accept') {
@@ -3576,7 +4149,7 @@
             }
 
             const submitBtn = document.getElementById('rsvpSubmitBtn');
-            if (submitBtn) submitBtn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Update RSVP';
+            if (submitBtn) submitBtn.textContent = 'Update RSVP';
 
             const countryCode = document.getElementById('inpCountryCode').value;
             const rawWhatsApp = document.getElementById('inpWhatsApp').value.trim();
@@ -3664,6 +4237,318 @@
             });
         })();
     </script>
+
+
+<style id="lumiere-w15-main-overlay-style">
+/* W15 is a visual overlay ABOVE all main-page photos, cards and text.
+   Exact viewport fit: width + dynamic mobile height are filled with no vertical crop.
+   Controls stay usable because the layer never receives pointer events. */
+#mainDisplayOverlayW15{
+  position:fixed !important;
+  inset:0 !important;
+  width:100vw !important;
+  height:100vh !important;
+  height:100dvh !important;
+  z-index:30 !important;
+  pointer-events:none !important;
+  overflow:hidden !important;
+  background:transparent !important;
+  transform:translateZ(0);
+}
+#mainDisplayOverlayW15 img{
+  position:absolute !important;
+  inset:0 !important;
+  width:100vw !important;
+  height:100vh !important;
+  height:100dvh !important;
+  max-width:none !important;
+  max-height:none !important;
+  object-fit:fill !important;
+  object-position:center center !important;
+  display:block !important;
+  pointer-events:none !important;
+  user-select:none !important;
+  -webkit-user-drag:none !important;
+}
+@media (max-width:640px){
+  #mainDisplayOverlayW15{
+    inset:0 !important;
+    width:100vw !important;
+    height:100dvh !important;
+  }
+  #mainDisplayOverlayW15 img{
+    width:100vw !important;
+    height:100dvh !important;
+    object-fit:fill !important;
+    object-position:50% 50% !important;
+  }
+}
+</style>
+<script id="lumiere-intro-music-autostart-final">
+(function(){
+  const music=document.getElementById('bgMusic');
+  const introVideo=document.getElementById('introVideo');
+  if(!music) return;
+
+  music.preload='auto';
+  music.autoplay=true;
+
+  function syncMusicUi(){
+    try{ if(typeof updateMusicUI==='function') updateMusicUI(!music.paused); }catch(e){}
+  }
+
+  function startIntroMusic(){
+    try{
+      const p=music.play();
+      if(p && typeof p.then==='function') p.then(syncMusicUi).catch(function(){});
+      else syncMusicUi();
+    }catch(e){}
+  }
+
+  // Try as soon as the intro starts/loads.
+  if(introVideo){
+    introVideo.addEventListener('playing',startIntroMusic,{passive:true});
+    introVideo.addEventListener('play',startIntroMusic,{passive:true});
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){
+      startIntroMusic();
+      if(introVideo && !introVideo.paused) startIntroMusic();
+    },{once:true});
+  }else{
+    startIntroMusic();
+  }
+  window.addEventListener('pageshow',startIntroMusic,{passive:true});
+
+  // Browser autoplay policy fallback: first real user interaction starts MP3 immediately.
+  ['pointerdown','touchstart','click','keydown'].forEach(function(evt){
+    document.addEventListener(evt,startIntroMusic,{once:true,passive:evt!=='keydown'});
+  });
+})();
+</script>
+
+
+<style id="lumiere-w15-true-fullscreen-fit-final">
+/* w15.png contains transparent padding inside the PNG itself.
+   Slight overscan compensates for that empty area so the visible artwork
+   reaches the full mobile viewport in both width and height. */
+#mainDisplayOverlayW15{
+  position:fixed !important;
+  inset:0 !important;
+  width:100vw !important;
+  height:100vh !important;
+  height:100dvh !important;
+  overflow:hidden !important;
+}
+#mainDisplayOverlayW15 img{
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  inset:auto !important;
+  width:104vw !important;
+  height:112vh !important;
+  height:112dvh !important;
+  max-width:none !important;
+  max-height:none !important;
+  object-fit:fill !important;
+  object-position:center center !important;
+  transform:translate(-50%,-50%) !important;
+  transform-origin:center center !important;
+}
+@media (max-width:640px){
+  #mainDisplayOverlayW15 img{
+    width:106vw !important;
+    height:114vh !important;
+    height:114dvh !important;
+    left:50% !important;
+    top:50% !important;
+    transform:translate(-50%,-50%) !important;
+  }
+}
+</style>
+
+<style id="lumiere-w15-top-fit-center-space-final">
+/* Push the decorative PNG farther toward the viewport edges.
+   This makes the top artwork reach the top edge and opens more clean space in the center. */
+#mainDisplayOverlayW15 img{
+  width:108vw !important;
+  height:118vh !important;
+  height:118dvh !important;
+  left:50% !important;
+  top:48.5% !important;
+  transform:translate(-50%,-50%) !important;
+  object-fit:fill !important;
+}
+@media (max-width:640px){
+  #mainDisplayOverlayW15 img{
+    width:110vw !important;
+    height:122vh !important;
+    height:122dvh !important;
+    left:50% !important;
+    top:48% !important;
+    transform:translate(-50%,-50%) !important;
+  }
+}
+@media (max-width:390px){
+  #mainDisplayOverlayW15 img{
+    width:112vw !important;
+    height:124vh !important;
+    height:124dvh !important;
+    top:47.7% !important;
+  }
+}
+</style>
+
+<script id="lumiereSeatingSystemScript">
+(function(){
+  const REVEAL_BEFORE_MS = 5 * 24 * 60 * 60 * 1000;
+  let autoShown = false;
+
+  function esc(v){return String(v ?? '').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+  function weddingData(){
+    try{return JSON.parse(localStorage.getItem('weddingDataKandyan')||'{}')||{};}catch(e){return {};}
+  }
+  function seatingConfig(){
+    const data=weddingData();
+    return {
+      guest:(document.getElementById('inpSeatingGuest')?.value || data.seatingGuest || 'Honored Family & Friends').trim(),
+      table:(document.getElementById('inpTableNumber')?.value || data.tableNumber || '').trim(),
+      seats:(document.getElementById('inpSeatNumbers')?.value || data.seatNumbers || '').split(/[;,\s]+/).map(s=>s.trim()).filter(Boolean),
+      note:(document.getElementById('inpSeatingNote')?.value || data.seatingNote || 'Your table has been prepared with care.').trim()
+    };
+  }
+  function rsvp(){
+    try{
+      const key=(typeof getRSVPStorageKey==='function')?getRSVPStorageKey():'kandyanRSVP:guest';
+      return JSON.parse(localStorage.getItem(key)||'null');
+    }catch(e){return null;}
+  }
+  function state(){
+    const response=rsvp();
+    const cfg=seatingConfig();
+    const accepted=response?.status==='Accept';
+    const count=accepted?Math.max(1,parseInt(response?.attendingCount,10)||1):0;
+    return {response,cfg,accepted,count,exact:accepted && cfg.seats.length===count,complete:accepted && !!cfg.table && cfg.seats.length===count};
+  }
+  function targetMs(){
+    if(Number.isFinite(Number(window.lumiereWeddingTargetMs))) return Number(window.lumiereWeddingTargetMs);
+    const data=weddingData();
+    if(typeof getWeddingTargetMs==='function') return getWeddingTargetMs(data.date || document.getElementById('inpDate')?.value, data.time || document.getElementById('inpTime')?.value);
+    const raw=data.date || document.getElementById('inpDate')?.value;
+    if(!raw) return NaN;
+    const p=raw.split('-').map(Number); return p.length===3?new Date(p[0],p[1]-1,p[2]).getTime():NaN;
+  }
+  function timing(){const w=targetMs(); const reveal=Number.isFinite(w)?w-REVEAL_BEFORE_MS:NaN; return {w,reveal,unlocked:Number.isFinite(reveal)&&Date.now()>=reveal};}
+  function fmt(ms){return Number.isFinite(ms)?new Date(ms).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}):'';}
+
+  function updateAdmin(){
+    const s=state();
+    const countEl=document.getElementById('inpReservedGuestCount'); if(countEl) countEl.value=s.count;
+    const card=document.getElementById('seatRsvpAdminCard'), icon=document.getElementById('seatRsvpAdminIcon'), stat=document.getElementById('seatRsvpAdminStatus'), meta=document.getElementById('seatRsvpAdminMeta');
+    if(card&&icon&&stat&&meta){
+      card.classList.remove('pending','accepted','declined');
+      if(s.response?.status==='Accept'){card.classList.add('accepted');icon.className='fa-solid fa-circle-check';stat.textContent='Accepted';meta.textContent=`${s.response?.name||s.cfg.guest} • ${s.count} confirmed guest${s.count===1?'':'s'}`;}
+      else if(s.response?.status==='Decline'){card.classList.add('declined');icon.className='fa-solid fa-circle-xmark';stat.textContent='Declined';meta.textContent=s.response?.name||'Guest response received';}
+      else{card.classList.add('pending');icon.className='fa-regular fa-hourglass-half';stat.textContent='Awaiting RSVP';meta.textContent='Guest count will appear after acceptance.';}
+    }
+    const check=document.getElementById('seatAssignmentCheck'), ci=document.getElementById('seatAssignmentCheckIcon'), ct=document.getElementById('seatAssignmentCheckTitle'), cx=document.getElementById('seatAssignmentCheckText');
+    if(check&&ci&&ct&&cx){
+      check.classList.remove('waiting','warning','ready');
+      if(!s.accepted){check.classList.add('waiting');ci.className='fa-solid fa-circle-info';ct.textContent='Waiting for confirmed guest count';cx.textContent='Assign table and seats after the guest accepts the invitation.';}
+      else if(!s.cfg.table){check.classList.add('warning');ci.className='fa-solid fa-triangle-exclamation';ct.textContent='Table number required';cx.textContent=`RSVP confirmed for ${s.count}. Add a table and ${s.count} seat number${s.count===1?'':'s'}.`;}
+      else if(!s.exact){check.classList.add('warning');ci.className='fa-solid fa-triangle-exclamation';ct.textContent='Seat count does not match RSVP';cx.textContent=`${s.count} guest${s.count===1?'':'s'} accepted, but ${s.cfg.seats.length} seat number${s.cfg.seats.length===1?'':'s'} assigned.`;}
+      else{check.classList.add('ready');ci.className='fa-solid fa-circle-check';ct.textContent='Ready for automatic reveal';cx.textContent=`${s.cfg.table} • ${s.cfg.seats.length} reserved seat${s.cfg.seats.length===1?'':'s'} • reveals 5 days before the wedding.`;}
+    }
+    const tm=timing(), hint=document.getElementById('seatRevealDateHint');
+    if(hint) hint.textContent=Number.isFinite(tm.reveal)?`Unlocks automatically on ${fmt(tm.reveal)}.`:'Unlocks 5 days before the wedding.';
+  }
+
+  function popup(){
+    const s=state(), data=weddingData();
+    const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v??'';};
+    set('popupSeatingGuest',s.response?.name||s.cfg.guest||'Honored Family & Friends');
+    set('popupTableNumber',s.cfg.table||'—'); set('popupGuestCount',s.count||1); set('popupGuestWord',(s.count||1)===1?'GUEST':'GUESTS'); set('popupSeatingNote',s.cfg.note);
+    set('popupVenueName',data.venueName||document.getElementById('displayVenueName')?.textContent||'Venue');
+    const tm=timing(); set('popupWeddingDate',Number.isFinite(tm.w)?fmt(tm.w):(data.date||'Wedding Date'));
+    const root=document.getElementById('popupSeatNumbers'); if(root) root.innerHTML=s.cfg.seats.length?s.cfg.seats.map(x=>`<span>${esc(x)}</span>`).join(''):'<span class="popup-seat-empty">Finalizing</span>';
+  }
+
+  window.renderSeatingSection=function(){
+    const loading=document.getElementById('seatLoadingState'), ready=document.getElementById('seatReadyState'), title=document.getElementById('seatLoadingTitle'), text=document.getElementById('seatLoadingText'), date=document.getElementById('seatRevealDateText');
+    if(!loading||!ready)return;
+    const s=state(), tm=timing(); updateAdmin(); popup();
+    loading.classList.remove('hidden'); ready.classList.add('hidden');
+    if(!s.accepted){title.textContent=s.response?.status==='Decline'?'Seating is not active':'Your seating will appear here';text.textContent=s.response?.status==='Decline'?'Your RSVP is currently declined.':'Confirm your attendance to activate your seating.';date.textContent='After RSVP acceptance: seats loading • final reveal 5 days before the wedding.';return;}
+    if(!tm.unlocked){title.textContent='Your seats are being prepared';text.textContent=s.complete?'Your seating has been reserved. It will be revealed 5 days before the wedding.':'Your RSVP is confirmed. We’re arranging your table and seats with care.';date.textContent=Number.isFinite(tm.reveal)?`Your final seating will unlock on ${fmt(tm.reveal)}.`:'Final reveal 5 days before the wedding.';return;}
+    if(!s.complete){title.textContent='Your seating is being finalized';text.textContent='Your final table and seats will appear here as soon as they are confirmed.';date.textContent='Final seating details are being prepared.';return;}
+    loading.classList.add('hidden'); ready.classList.remove('hidden'); if(!autoShown) setTimeout(()=>window.openSeatingReveal(false),450);
+  };
+
+  window.openSeatingReveal=function(forcePreview){
+    const modal=document.getElementById('seatingRevealModal'); if(!modal)return;
+    const s=state(), tm=timing(); if(!forcePreview && (!s.complete||!tm.unlocked)){window.renderSeatingSection();return;}
+    popup(); modal.style.display='grid'; modal.setAttribute('aria-hidden','false'); document.body.classList.add('seating-reveal-open'); requestAnimationFrame(()=>requestAnimationFrame(()=>modal.classList.add('open'))); if(!forcePreview)autoShown=true;
+  };
+  window.closeSeatingReveal=function(){const modal=document.getElementById('seatingRevealModal');if(!modal)return;modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('seating-reveal-open');setTimeout(()=>{if(!modal.classList.contains('open'))modal.style.display='none';},340);};
+
+  function liveCountdown(){const d=document.getElementById('inpDate'), t=document.getElementById('inpTime');if(d?.value && typeof startCountdown==='function')startCountdown(d.value,t?.value||'');}
+  document.addEventListener('DOMContentLoaded',()=>{
+    const d=document.getElementById('inpDate'), ti=document.getElementById('inpTime');
+    ['input','change'].forEach(ev=>{d?.addEventListener(ev,liveCountdown);ti?.addEventListener(ev,liveCountdown);});
+    ['inpSeatingGuest','inpTableNumber','inpSeatNumbers','inpSeatingNote'].forEach(id=>document.getElementById(id)?.addEventListener('input',()=>window.renderSeatingSection()));
+    liveCountdown(); window.renderSeatingSection();
+  });
+  setInterval(()=>window.renderSeatingSection&&window.renderSeatingSection(),60000);
+})();
+</script>
+
+
+<script id="lumiereWeddingDayCalendarScript">
+(function(){
+  function parseDateValue(value){
+    const m=String(value||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if(!m) return null;
+    const y=+m[1], mo=+m[2], d=+m[3];
+    const dt=new Date(y,mo-1,d);
+    return (dt.getFullYear()===y && dt.getMonth()===mo-1 && dt.getDate()===d)?dt:null;
+  }
+  function currentWeddingDate(){
+    const input=document.getElementById('inpDate');
+    const direct=parseDateValue(input?.value);
+    if(direct) return direct;
+    try{
+      const saved=JSON.parse(localStorage.getItem('weddingDataKandyan')||'{}');
+      return parseDateValue(saved?.date) || parseDateValue('2027-09-18');
+    }catch(e){return parseDateValue('2027-09-18');}
+  }
+  window.renderWeddingDayCalendar=function(){
+    const grid=document.getElementById('weddingCalendarGrid');
+    const monthEl=document.getElementById('weddingCalendarMonth');
+    const line=document.getElementById('weddingCalendarDateLine');
+    if(!grid||!monthEl||!line) return;
+    const date=currentWeddingDate(); if(!date) return;
+    const y=date.getFullYear(), m=date.getMonth(), selected=date.getDate();
+    monthEl.textContent=date.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+    line.textContent=date.toLocaleDateString('en-US',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    const first=new Date(y,m,1).getDay();
+    const days=new Date(y,m+1,0).getDate();
+    let html='';
+    for(let i=0;i<first;i++) html+='<span class="wdc-day empty" aria-hidden="true"></span>';
+    for(let d=1;d<=days;d++){
+      const wedding=d===selected;
+      html+=`<span class="wdc-day${wedding?' wedding':''}"${wedding?' aria-current="date" title="Wedding Day"':''}>${d}</span>`;
+    }
+    grid.innerHTML=html;
+  };
+  function bind(){
+    const d=document.getElementById('inpDate');
+    ['input','change'].forEach(ev=>d?.addEventListener(ev,()=>window.renderWeddingDayCalendar()));
+    window.renderWeddingDayCalendar();
+    setTimeout(window.renderWeddingDayCalendar,120);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind,{once:true}); else bind();
+})();
+</script>
 
 </body>
 </html>
