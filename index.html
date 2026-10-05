@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title id="pageTitle">Lumière - Elegant Western Wedding Invitation</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -2624,7 +2626,7 @@ html, body {
 
     <!-- FIXED LIGHT WESTERN WEDDING BACKGROUND -->
     <div id="pageBackground" class="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-        <img src="https://raw.githubusercontent.com/lumierecompany07/BackgroundPhotos/main/w14.png" alt="Wedding Background" class="absolute inset-0 w-full h-full object-cover">
+        <img src="https://raw.githubusercontent.com/lumierecompany07/BackgroundPhotos/main/w14.png" alt="Wedding Background" loading="eager" decoding="async" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover">
     </div>
 
     <!-- W15 MAIN PAGE DISPLAY OVERLAY: above all main-page photos/cards/text -->
@@ -2990,23 +2992,23 @@ html, body {
 
             <div class="moments-mosaic" data-aos="fade-up" data-aos-duration="900">
                 <button type="button" onclick="openLightbox('gridImg0')" class="moments-mosaic-card moments-mosaic-featured group" aria-label="Open first wedding photo">
-                    <img id="gridImg0" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Moments of Love 1" class="w-full h-full object-cover slide-img group-hover:scale-[1.035] transition duration-700">
+                    <img id="gridImg0" loading="lazy" decoding="async" fetchpriority="low" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=2400&q=92" alt="Moments of Love 1" class="w-full h-full object-cover slide-img group-hover:scale-[1.035] transition duration-700">
                 </button>
 
                 <button type="button" onclick="openLightbox('gridImg1')" class="moments-mosaic-card group" aria-label="Open second wedding photo">
-                    <img id="gridImg1" src="https://images.unsplash.com/photo-1610173827002-6138ec31751f?auto=format&fit=crop&w=600&q=80" alt="Moments of Love 2" class="w-full h-full object-cover slide-img group-hover:scale-[1.035] transition duration-700">
+                    <img id="gridImg1" loading="lazy" decoding="async" fetchpriority="low" src="https://images.unsplash.com/photo-1610173827002-6138ec31751f?auto=format&fit=crop&w=2400&q=92" alt="Moments of Love 2" class="w-full h-full object-cover slide-img group-hover:scale-[1.035] transition duration-700">
                 </button>
 
                 <button type="button" onclick="openLightbox('gridImg2')" class="moments-mosaic-card group" aria-label="Open third wedding photo">
-                    <img id="gridImg2" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Moments of Love 3" class="w-full h-full object-cover slide-img group-hover:scale-[1.035] transition duration-700">
+                    <img id="gridImg2" loading="lazy" decoding="async" fetchpriority="low" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2400&q=92" alt="Moments of Love 3" class="w-full h-full object-cover slide-img group-hover:scale-[1.035] transition duration-700">
                 </button>
 
                 <button type="button" onclick="openLightbox('gridImg3')" class="moments-mosaic-card group" aria-label="Open fourth wedding photo">
-                    <img id="gridImg3" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Moments of Love 4" class="w-full h-full object-cover slide-img group-hover:scale-[1.035] transition duration-700">
+                    <img id="gridImg3" loading="lazy" decoding="async" fetchpriority="low" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=2400&q=92" alt="Moments of Love 4" class="w-full h-full object-cover slide-img group-hover:scale-[1.035] transition duration-700">
                 </button>
 
                 <button type="button" onclick="openLightbox('gridImg4')" class="moments-mosaic-card group" aria-label="Open fifth wedding photo">
-                    <img id="gridImg4" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80" alt="Moments of Love 5" class="w-full h-full object-cover slide-img group-hover:scale-[1.035] transition duration-700">
+                    <img id="gridImg4" loading="lazy" decoding="async" fetchpriority="low" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=2400&q=92" alt="Moments of Love 5" class="w-full h-full object-cover slide-img group-hover:scale-[1.035] transition duration-700">
                 </button>
             </div>
         </section>
@@ -3096,7 +3098,7 @@ html, body {
     <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeLightbox()">
         <div class="relative max-w-4xl w-full max-h-[90vh] flex items-center justify-center" onclick="event.stopPropagation()">
             <button onclick="closeLightbox()" class="absolute -top-10 sm:-top-12 right-0 text-white hover:text-kandyanGold text-2xl sm:text-3xl font-bold p-2 transition cursor-pointer">×</button>
-            <img id="lightboxImg" src="" alt="Zoomed Photo" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl animate-fade-scale">
+            <img id="lightboxImg" alt="Zoomed Photo" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl animate-fade-scale">
         </div>
     </div>
 
@@ -3506,7 +3508,7 @@ html, body {
             const urlParams = new URLSearchParams(window.location.search);
             const guest = urlParams.get('guest');
             if(guest) {
-                const decodedGuest = decodeURIComponent(guest);
+                const decodedGuest = guest;
                 document.getElementById('dynamicGuestName').textContent = decodedGuest;
                 document.getElementById('introGuestName').textContent = decodedGuest;
                 const rsvpGuestName = document.getElementById('guestName');
@@ -3525,11 +3527,11 @@ html, body {
         });
 
         let photoPools = [
-            ['https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80'],
-            ['https://images.unsplash.com/photo-1610173827002-6138ec31751f?auto=format&fit=crop&w=600&q=80', 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80'],
-            ['https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80', 'https://images.unsplash.com/photo-1610173827002-6138ec31751f?auto=format&fit=crop&w=600&q=80'],
-            ['https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80', 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80'],
-            ['https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80', 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80']
+            ['https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=2400&q=92', 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2400&q=92'],
+            ['https://images.unsplash.com/photo-1610173827002-6138ec31751f?auto=format&fit=crop&w=2400&q=92', 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=2400&q=92'],
+            ['https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2400&q=92', 'https://images.unsplash.com/photo-1610173827002-6138ec31751f?auto=format&fit=crop&w=2400&q=92'],
+            ['https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=2400&q=92', 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=2400&q=92'],
+            ['https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=2400&q=92', 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=2400&q=92']
         ];
 
         let slideIndexes = [0, 0, 0, 0, 0];
@@ -3863,7 +3865,7 @@ html, body {
         }
 
         function loadSavedCustomizations() {
-            const saved = localStorage.getItem('weddingDataKandyan');
+            const saved = window.LUMIERE_SHARED_DATA ? JSON.stringify(window.LUMIERE_SHARED_DATA) : localStorage.getItem('weddingDataKandyan');
             if(saved) {
                 try {
                     const data = JSON.parse(saved);
@@ -3906,7 +3908,12 @@ html, body {
                         renderItinerary();
                     }
                     if(data.photoPools) {
-                        photoPools = data.photoPools;
+                        photoPools = data.photoPools.map(pool => Array.isArray(pool) ? pool.map(src => {
+                            if(typeof src !== 'string' || !src.includes('images.unsplash.com')) return src;
+                            return src
+                                .replace(/([?&])w=\d+/i, '$1w=2400')
+                                .replace(/([?&])q=\d+/i, '$1q=92');
+                        }) : []);
                         for(let i=0; i<5; i++) {
                             if(photoPools[i] && photoPools[i][0]) {
                                 document.getElementById(`gridImg${i}`).src = photoPools[i][0];
@@ -4085,10 +4092,12 @@ html, body {
         }
 
         function getRSVPStorageKey() {
-            const urlGuest = new URLSearchParams(window.location.search).get('guest');
+            const params = new URLSearchParams(window.location.search);
+            const urlGuest = params.get('guest');
+            const inviteId = (params.get('iid') || 'local').replace(/[^a-z0-9_-]/gi, '').slice(0, 80) || 'local';
             const typedName = document.getElementById('guestName')?.value.trim() || '';
-            const identity = urlGuest ? decodeURIComponent(urlGuest) : typedName;
-            return identity ? `kandyanRSVP:${identity.toLowerCase()}` : 'kandyanRSVP:guest';
+            const identity = (urlGuest || typedName || 'guest').trim().toLowerCase();
+            return `lumiereRSVP:${inviteId}:${identity}`;
         }
 
         function restoreSavedRSVP() {
@@ -4101,7 +4110,7 @@ html, body {
                 const invitedGuestFromLink = new URLSearchParams(window.location.search).get('guest');
                 if (guestNameField) {
                     if (invitedGuestFromLink) {
-                        guestNameField.value = decodeURIComponent(invitedGuestFromLink);
+                        guestNameField.value = invitedGuestFromLink;
                         guestNameField.readOnly = true;
                         guestNameField.classList.add('cursor-default');
                     } else if (response.name) {
@@ -4406,6 +4415,7 @@ html, body {
 
   function esc(v){return String(v ?? '').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
   function weddingData(){
+    if(window.LUMIERE_SHARED_DATA && typeof window.LUMIERE_SHARED_DATA === 'object') return window.LUMIERE_SHARED_DATA;
     try{return JSON.parse(localStorage.getItem('weddingDataKandyan')||'{}')||{};}catch(e){return {};}
   }
   function seatingConfig(){
@@ -4517,7 +4527,9 @@ html, body {
     const direct=parseDateValue(input?.value);
     if(direct) return direct;
     try{
-      const saved=JSON.parse(localStorage.getItem('weddingDataKandyan')||'{}');
+      const saved=(window.LUMIERE_SHARED_DATA && typeof window.LUMIERE_SHARED_DATA==='object')
+        ? window.LUMIERE_SHARED_DATA
+        : JSON.parse(localStorage.getItem('weddingDataKandyan')||'{}');
       return parseDateValue(saved?.date) || parseDateValue('2027-09-18');
     }catch(e){return parseDateValue('2027-09-18');}
   }
@@ -4547,6 +4559,373 @@ html, body {
     setTimeout(window.renderWeddingDayCalendar,120);
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind,{once:true}); else bind();
+})();
+</script>
+
+
+<!-- =========================================================
+     LUMIÈRE PRODUCTION PATCH
+     - Ultra-HD source handling without changing layout dimensions
+     - Locked guest mode: RSVP is the only editable invitation data
+     - Cross-device invitation snapshot embedded in URL hash
+     ========================================================= -->
+<style id="lumiere-production-ultrahd-guest-lock">
+    html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        font-synthesis: none;
+    }
+    body {
+        min-width: 0;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Keep every current box/section size intact; only improve raster rendering. */
+    img, video {
+        image-rendering: auto;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    #pageBackground img,
+    #mainDisplayOverlayW15 img,
+    .moments-mosaic-card img,
+    #lightboxImg {
+        image-rendering: auto !important;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    .moments-mosaic-card img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+    }
+    #lightboxImg {
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
+
+    /* Prevent accidental browser font auto-enlargement from changing the design proportions. */
+    @media (max-width: 640px) {
+        html, body { font-size: 100%; }
+    }
+
+    /* Guest/invitor mode: host/admin editing controls are never exposed. */
+    html.lumiere-guest-mode #hostControlsContainer,
+    html.lumiere-guest-mode #inviteGuestBtn,
+    html.lumiere-guest-mode #customizeBtn,
+    html.lumiere-guest-mode #customizerPanel,
+    html.lumiere-guest-mode #guestModal,
+    html.lumiere-guest-mode #seatingManagerCustomizer {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    /* RSVP stays active and editable for the invited guest. */
+    html.lumiere-guest-mode #rsvp,
+    html.lumiere-guest-mode #rsvp * {
+        pointer-events: auto;
+    }
+
+    /* Avoid horizontal drift at unusual device widths / display scaling. */
+    html, body, main, footer, #heroSection {
+        max-width: 100%;
+    }
+    @supports (width: 100dvw) {
+        body { width: 100dvw; max-width: 100dvw; }
+    }
+</style>
+
+<script id="lumiere-production-guest-snapshot">
+(function () {
+    'use strict';
+
+    const SNAPSHOT_HASH_KEY = 'lumiere';
+    const SNAPSHOT_VERSION = 2;
+    const params = new URLSearchParams(window.location.search);
+    const guestNameFromUrl = params.get('guest') || '';
+    const isGuestMode = params.get('mode') === 'guest' || !!guestNameFromUrl;
+
+    window.LUMIERE_GUEST_MODE = isGuestMode;
+
+    function q(id) { return document.getElementById(id); }
+
+    function applyGuestPermissions() {
+        if (!isGuestMode) return;
+        document.documentElement.classList.add('lumiere-guest-mode');
+
+        ['hostControlsContainer','inviteGuestBtn','customizeBtn','customizerPanel','guestModal','seatingManagerCustomizer']
+            .forEach(id => {
+                const el = q(id);
+                if (!el) return;
+                el.style.setProperty('display', 'none', 'important');
+                el.style.setProperty('visibility', 'hidden', 'important');
+                el.style.setProperty('pointer-events', 'none', 'important');
+                el.setAttribute('aria-hidden', 'true');
+            });
+
+        const guestField = q('guestName');
+        if (guestField && guestNameFromUrl) {
+            guestField.value = guestNameFromUrl;
+            guestField.readOnly = true;
+            guestField.classList.add('cursor-default');
+            guestField.setAttribute('title', 'Guest name is locked to this invitation link.');
+        }
+
+        if (guestNameFromUrl) {
+            const dynamicName = q('dynamicGuestName');
+            const introGuest = q('introGuestName');
+            if (dynamicName) dynamicName.textContent = guestNameFromUrl;
+            if (introGuest) introGuest.textContent = guestNameFromUrl;
+        }
+    }
+
+    /* Block host-only mutation functions even if called manually in guest mode. */
+    function protectHostFunction(name) {
+        const original = window[name];
+        if (typeof original !== 'function') return;
+        window[name] = function () {
+            if (window.LUMIERE_GUEST_MODE) return false;
+            return original.apply(this, arguments);
+        };
+    }
+
+    function bytesToBase64Url(bytes) {
+        let binary = '';
+        const CHUNK = 0x8000;
+        for (let i = 0; i < bytes.length; i += CHUNK) {
+            const part = bytes.subarray(i, Math.min(i + CHUNK, bytes.length));
+            binary += String.fromCharCode.apply(null, part);
+        }
+        return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+    }
+
+    function base64UrlToBytes(value) {
+        const b64 = value.replace(/-/g, '+').replace(/_/g, '/');
+        const padded = b64 + '='.repeat((4 - b64.length % 4) % 4);
+        const binary = atob(padded);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+        return bytes;
+    }
+
+    async function encodeSnapshot(data) {
+        const json = JSON.stringify({ v: SNAPSHOT_VERSION, data });
+        const raw = new TextEncoder().encode(json);
+
+        if ('CompressionStream' in window) {
+            const stream = new Blob([raw]).stream().pipeThrough(new CompressionStream('gzip'));
+            const compressed = new Uint8Array(await new Response(stream).arrayBuffer());
+            return 'gz.' + bytesToBase64Url(compressed);
+        }
+        return 'b64.' + bytesToBase64Url(raw);
+    }
+
+    async function decodeSnapshot(value) {
+        if (!value) return null;
+        try {
+            const dot = value.indexOf('.');
+            const kind = dot > -1 ? value.slice(0, dot) : 'b64';
+            const body = dot > -1 ? value.slice(dot + 1) : value;
+            let bytes = base64UrlToBytes(body);
+
+            if (kind === 'gz') {
+                if (!('DecompressionStream' in window)) throw new Error('Compressed invitation snapshot is not supported by this browser.');
+                const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+                bytes = new Uint8Array(await new Response(stream).arrayBuffer());
+            }
+
+            const parsed = JSON.parse(new TextDecoder().decode(bytes));
+            return parsed && parsed.data && typeof parsed.data === 'object' ? parsed.data : null;
+        } catch (err) {
+            console.error('Lumière invitation snapshot could not be decoded:', err);
+            return null;
+        }
+    }
+
+    function getHashSnapshot() {
+        const raw = window.location.hash.replace(/^#/, '');
+        if (!raw) return '';
+        const hashParams = new URLSearchParams(raw);
+        return hashParams.get(SNAPSHOT_HASH_KEY) || '';
+    }
+
+    function currentWeddingData() {
+        try {
+            const saved = JSON.parse(localStorage.getItem('weddingDataKandyan') || 'null');
+            if (saved && typeof saved === 'object') return saved;
+        } catch (err) {}
+
+        const read = id => q(id)?.value || '';
+        return {
+            groom: read('inpGroom'),
+            bride: read('inpBride'),
+            bio: read('inpBio'),
+            heroDesc: read('inpHeroDesc'),
+            story: Array.isArray(window.storyList) ? window.storyList.map(x => ({...x})) :
+                   (typeof storyList !== 'undefined' && Array.isArray(storyList) ? storyList.map(x => ({...x})) : []),
+            groomParents: read('inpGroomParents'),
+            brideParents: read('inpBrideParents'),
+            date: read('inpDate'),
+            time: read('inpTime'),
+            venueName: read('inpVenueName'),
+            mapLink: read('inpMapLink'),
+            venueAddress: read('inpVenueAddress'),
+            whatsappCode: read('inpCountryCode'),
+            whatsappNumber: read('inpWhatsApp'),
+            seatingGuest: read('inpSeatingGuest'),
+            tableNumber: read('inpTableNumber'),
+            seatNumbers: read('inpSeatNumbers'),
+            seatingNote: read('inpSeatingNote'),
+            itinerary: (typeof itineraryList !== 'undefined' && Array.isArray(itineraryList)) ? itineraryList.map(x => ({...x})) : [],
+            photoPools: (typeof photoPools !== 'undefined' && Array.isArray(photoPools)) ? JSON.parse(JSON.stringify(photoPools)) : []
+        };
+    }
+
+    function makeInviteId(name, payload) {
+        let h = 2166136261;
+        const input = `${name}|${payload.slice(0, 4096)}|${Date.now()}|${Math.random()}`;
+        for (let i = 0; i < input.length; i++) {
+            h ^= input.charCodeAt(i);
+            h = Math.imul(h, 16777619);
+        }
+        return (h >>> 0).toString(36) + Date.now().toString(36);
+    }
+
+    /* Override the old guest-link generator:
+       the new URL carries the SAVED invitation snapshot in the fragment.
+       The fragment is not sent to GitHub/server, so the page URL itself remains loadable. */
+    window.generateGuestLink = async function generateGuestLinkPatched() {
+        if (window.LUMIERE_GUEST_MODE) return false;
+
+        const count = (typeof getGuestLinkCount === 'function') ? getGuestLinkCount() : 0;
+        const max = (typeof MAX_GUEST_LINKS !== 'undefined') ? MAX_GUEST_LINKS : 200;
+        if (count >= max) {
+            alert(`You've reached the maximum of ${max} guest invite links for this invitation.`);
+            if (typeof updateGuestLinkCounterUI === 'function') updateGuestLinkCounterUI();
+            return false;
+        }
+
+        const name = q('guestNameInput')?.value.trim() || '';
+        if (!name) {
+            alert('Please enter a guest name.');
+            return false;
+        }
+
+        const btn = q('generateLinkBtn');
+        const oldHtml = btn ? btn.innerHTML : '';
+        if (btn) {
+            btn.disabled = true;
+            btn.classList.add('opacity-70', 'cursor-wait');
+            btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Preparing Secure Guest Link…';
+        }
+
+        try {
+            const data = currentWeddingData();
+            data._lumiereSnapshotVersion = SNAPSHOT_VERSION;
+            const payload = await encodeSnapshot(data);
+            const inviteId = makeInviteId(name, payload);
+            const baseUrl = window.location.href.split(/[?#]/)[0];
+            const search = new URLSearchParams({
+                guest: name,
+                mode: 'guest',
+                iid: inviteId
+            });
+
+            const customLink = `${baseUrl}?${search.toString()}#${SNAPSHOT_HASH_KEY}=${payload}`;
+            const out = q('generatedLinkOutput');
+            if (out) out.value = customLink;
+
+            q('resultContainer')?.classList.remove('hidden');
+            q('copySuccessMsg')?.classList.add('hidden');
+
+            try {
+                localStorage.setItem(GUEST_LINK_COUNT_KEY, String(count + 1));
+            } catch (err) {}
+            if (typeof updateGuestLinkCounterUI === 'function') updateGuestLinkCounterUI();
+
+            /* Surface unusually large snapshot links before sharing apps truncate them. */
+            if (customLink.length > 1500000) {
+                console.warn('Lumière: this invitation link is very large because local uploaded photos are embedded in the snapshot.');
+            }
+            return customLink;
+        } catch (err) {
+            console.error('Could not create guest invitation link:', err);
+            alert('Could not create the guest link. Please save the invitation once and try again.');
+            return false;
+        } finally {
+            if (btn) {
+                btn.disabled = false;
+                btn.classList.remove('opacity-70', 'cursor-wait');
+                btn.innerHTML = oldHtml || '<span>✨</span> Generate Link';
+            }
+        }
+    };
+
+    window.copyGuestLink = async function copyGuestLinkPatched() {
+        const input = q('generatedLinkOutput');
+        if (!input || !input.value) return;
+        try {
+            await navigator.clipboard.writeText(input.value);
+        } catch (err) {
+            input.focus();
+            input.select();
+            input.setSelectionRange(0, input.value.length);
+            document.execCommand('copy');
+        }
+        const msg = q('copySuccessMsg');
+        if (msg) {
+            msg.textContent = 'Guest link copied — saved design is locked into this invitation.';
+            msg.classList.remove('hidden');
+            setTimeout(() => msg.classList.add('hidden'), 3500);
+        }
+    };
+
+    async function bootstrapSharedInvitation() {
+        applyGuestPermissions();
+        if (!isGuestMode) return;
+
+        const payload = getHashSnapshot();
+        if (payload) {
+            const shared = await decodeSnapshot(payload);
+            if (shared) {
+                window.LUMIERE_SHARED_DATA = shared;
+
+                /* The original loader now prefers LUMIERE_SHARED_DATA.
+                   This re-renders story, itinerary, photos, names, date, venue,
+                   countdown, RSVP deadline, seating data and footer in their original places. */
+                if (typeof window.loadSavedCustomizations === 'function') {
+                    window.loadSavedCustomizations();
+                } else if (typeof loadSavedCustomizations === 'function') {
+                    loadSavedCustomizations();
+                }
+
+                if (typeof window.renderSeatingSection === 'function') window.renderSeatingSection();
+                if (typeof window.renderWeddingDayCalendar === 'function') window.renderWeddingDayCalendar();
+            }
+        }
+
+        /* Guest identity must win after the shared state re-renders. */
+        applyGuestPermissions();
+
+        if (typeof window.prepareTextSectionAnimations === 'function') window.prepareTextSectionAnimations();
+        if (window.AOS && typeof window.AOS.refreshHard === 'function') window.AOS.refreshHard();
+    }
+
+    applyGuestPermissions();
+
+    ['toggleCustomizer','openGuestModal','applyCustomizations','generateAIBio','addStoryItem','removeStoryItem','updateStoryItem']
+        .forEach(protectHostFunction);
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootstrapSharedInvitation, { once: true });
+    } else {
+        bootstrapSharedInvitation();
+    }
 })();
 </script>
 
