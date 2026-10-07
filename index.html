@@ -3123,7 +3123,7 @@ html, body {
     <!-- AOS JS Library CDN -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
+        if(window.AOS) AOS.init({
             duration: 1000,
             once: true,
             offset: 50,
@@ -3924,7 +3924,7 @@ html, body {
                     const fullNameStr = `${data.bride || 'Charlotte'} & ${data.groom || 'Oliver'}`;
                     document.getElementById('pageTitle').textContent = `${fullNameStr} - Elegant Western Wedding`;
                     document.getElementById('heroNames').textContent = fullNameStr;
-                    document.getElementById('introNames').textContent = fullNameStr;
+                    if(document.getElementById('introNames')) document.getElementById('introNames').textContent = fullNameStr;
                     document.getElementById('displayHeroDesc').textContent = data.heroDesc || '';
                     document.getElementById('footerNames').textContent = fullNameStr;
                     document.getElementById('footerTitleNames').textContent = fullNameStr;
@@ -4929,5 +4929,92 @@ html, body {
 })();
 </script>
 
+<script id="lumTemplate46SyncV2">
+(function () {
+  'use strict';
+  if (window.__lumTemplate46SyncV2) return;
+  window.__lumTemplate46SyncV2 = true;
+  var isFour = !!document.getElementById('inpHeroDesc');
+  var nativeApply = window.applyLiveDataFromDashboard;
+  var latest = {}, lastJSON = '', connected = false, guestLocked = false;
+  function has(v) { return v !== undefined && v !== null; }
+  function text(id, v) { var el = document.getElementById(id); if (el && has(v)) el.textContent = String(v); }
+  function input(id, v) { var el = document.getElementById(id); if (el && has(v)) el.value = String(v); }
+  function normalize(p) {
+    var d = Object.assign({}, p);
+    [['venue','venueName'],['address','venueAddress'],['map','mapLink'],['bio','coupleBio'],['guest','guestName'],['seatNumber','seatNumbers']].forEach(function(pair) {
+      if (!has(d[pair[0]]) && has(d[pair[1]])) d[pair[0]] = d[pair[1]];
+    });
+    if (!Array.isArray(d.story) && Array.isArray(d.ourStory)) d.story = d.ourStory;
+    if (Array.isArray(d.story)) d.story = d.story.map(function(x) { return Object.assign({}, x, {description:x.description ?? x.desc ?? x.text ?? ''}); });
+    if (Array.isArray(d.itinerary)) d.itinerary = d.itinerary.map(function(x) { return Object.assign({}, x, {description:x.description ?? x.desc ?? '',desc:x.description ?? x.desc ?? '',icon:x.icon || 'fa-heart'}); });
+    var slots = d.gallerySlots || d.photoPools || d.gallery;
+    if (Array.isArray(slots)) d.gallerySlots = Array.from({length:5}, function(_,i) { var s=slots[i]; return (Array.isArray(s)?s:(s?[s]:[])).filter(Boolean).slice(0,3); });
+    return d;
+  }
+  function apply(p) {
+    if (!p || typeof p !== 'object') return;
+    var d = normalize(p);
+    // The dashboard sends both message types and may also call this function directly.
+    var signature = JSON.stringify(d);
+    if (signature === lastJSON) return;
+    latest = Object.assign({}, latest, d);
+    if (isFour) {
+      var saved = Object.assign({}, window.LUMIERE_SHARED_DATA || {}, d);
+      if (has(d.venue)) saved.venueName = d.venue;
+      if (has(d.address)) saved.venueAddress = d.address;
+      if (has(d.map)) saved.mapLink = d.map;
+      if (d.gallerySlots) saved.photoPools = d.gallerySlots;
+      window.LUMIERE_SHARED_DATA = saved;
+      // Older copies removed this intro element but still dereference it in their loader.
+      if (!document.getElementById('introNames')) {
+        var placeholder=document.createElement('span');placeholder.id='introNames';placeholder.hidden=true;document.body.appendChild(placeholder);
+      }
+      if (typeof loadSavedCustomizations === 'function') loadSavedCustomizations();
+      var fields={bride:'inpBride',groom:'inpGroom',brideParents:'inpBrideParents',groomParents:'inpGroomParents',bio:'inpBio',heroDesc:'inpHeroDesc',date:'inpDate',time:'inpTime',venue:'inpVenueName',address:'inpVenueAddress',map:'inpMapLink',tableNumber:'inpTableNumber',seatNumber:'inpSeatNumbers'};
+      Object.keys(fields).forEach(function(k){input(fields[k],d[k]);});
+      text('displayVenueName',d.venue);text('displayVenueAddress',d.address);text('displayTimeBadge',d.time);
+      if (d.gallerySlots) d.gallerySlots.forEach(function(slot,i) { var img=document.getElementById('gridImg'+i); if(img){if(slot[0]){img.src=slot[0];img.hidden=false;}else{img.removeAttribute('src');img.hidden=true;}} });
+      if (typeof window.renderSeatingSection === 'function') window.renderSeatingSection();
+    } else if (typeof nativeApply === 'function') {
+      nativeApply(d);
+    }
+    text('displayBio',d.bio);text('displayHeroDesc',d.heroDesc);
+    var bio=document.getElementById('displayBio');
+    if (bio && has(d.foreverTitle)) { var heading=bio.parentElement.querySelector('h2');if(heading)heading.textContent=d.foreverTitle; }
+    if (!document.getElementById('displayHeroDesc') && has(d.heroDesc)) {
+      var names=document.getElementById('heroNames');
+      if(names){var desc=document.createElement('p');desc.id='displayHeroDesc';desc.className='text-xs sm:text-sm leading-relaxed mt-3';desc.textContent=d.heroDesc;names.parentElement.appendChild(desc);}
+    }
+    text('dynamicGuestName',d.guest);text('introGuestName',d.guest);
+    if (has(d.guest)) ['guestName','rsvpGuestNameInput'].forEach(function(id){input(id,d.guest);});
+    guestLocked = guestLocked || d.guestMode === true || d.viewerMode === 'guest';
+    if (guestLocked || d.hideHostControls === true) ['hostControlsContainer','customizerPanel','guestModal'].forEach(function(id){var el=document.getElementById(id);if(el){el.hidden=true;el.style.setProperty('display','none','important');}});
+    if (has(d.bride) || has(d.groom)) document.title=(latest.bride || '')+' & '+(latest.groom || '')+' — Wedding Invitation';
+    lastJSON=signature;
+    window.__lumTemplate46LastPayload=latest;
+  }
+  window.applyLiveDataFromDashboard=apply;
+  if(isFour){window.__lumT4Adapter=true;window.applyWeddingData=apply;window.applyTemplateVariables=apply;window.updateInvitationPreview=apply;}
+  window.addEventListener('message',function(e){
+    var m=e.data;
+    if(!m || (m.type!=='LUMIERE_LIVE_DATA' && m.type!=='LUMIERE_LIVE_UPDATE'))return;
+    e.stopImmediatePropagation();
+    if(e.source!==window.parent || window.parent===window || m.source!=='lumiere-dashboard')return;
+    connected=true;
+    apply(m.payload || m.data || {});
+  },true);
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest && e.target.closest('#customizeBtn');
+    if(!btn || !connected || window.parent===window)return;
+    e.preventDefault();e.stopImmediatePropagation();
+    if(guestLocked || window.LUMIERE_GUEST_MODE || (typeof isLumiereGuestMode==='function' && isLumiereGuestMode()))return;
+    window.parent.postMessage({source:'lumiere-template',type:'LUMIERE_OPEN_DASHBOARD_CUSTOMIZE',templateId:isFour?4:6,section:'names'},'*');
+  },true);
+  function ready(){if(window.parent!==window)window.parent.postMessage({source:'lumiere-template',type:'LUMIERE_TEMPLATE_READY',templateId:isFour?4:6},'*');}
+  if(document.readyState==='complete')ready();else window.addEventListener('load',ready,{once:true});
+})();
+
+</script>
 </body>
 </html>
